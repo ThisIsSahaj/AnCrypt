@@ -1,0 +1,184 @@
+/* 
+lightest d7fff1
+aafcb8
+8cd790
+77af9c
+285943 */
+
+/* green black
+white FCFFFC
+2D3A3A
+secondary green light 2BA84A
+primary green dark 248232
+black 040F0F */
+
+
+ ::-webkit-scrollbar{
+  display: none;
+  width: 0px;
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;800&family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  
+ }
+
+.mainDiv{
+  /* background-color: #14161a; */
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+}
+.coinRow{
+  /* background-color:#16171a; */
+  background-color:black;
+  cursor: pointer;
+  font-family: "Montserrat";
+  /* transition: all .2s ease-in-out;  */
+}
+.coinRow:hover{
+  background-color: #131111;
+  /* transform: scale(1.1);  */
+  
+}
+a{
+  text-decoration: none;
+  color: #248232;
+}
+
+.container{
+  display: flex;
+
+}
+
+
+.sidebar{
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  margin-top: 25px;
+  border-right: 2px solid grey;
+  
+  padding: 20px;
+  
+}
+.coinHeading{
+  font-weight: bolder;
+  margin-bottom: 20px;
+  font-family: "Montserrat";
+  color: gold;
+  
+}
+.coinName{
+  color: orange;
+}
+.coinDescription{
+  width: 100%;
+  font-family: "Montserrat";
+  padding: 25px;
+  padding-bottom: 15px;
+  padding-top: 0px;
+  text-align: justify;
+
+}
+.marketData{
+  
+  padding: 25px;
+  padding-top: 10px;
+  width: 100%;
+  margin-top: 30px;
+
+  border-radius: 15px;
+  box-shadow:20px 20px 50px rgba(0, 0, 0, 0.5); 
+  background-color: rgba(255, 255, 255, 0.1);
+  border-top:1px solid rgba(255, 255, 255, 0.5); 
+  border-left:1px solid rgba(255, 255, 255, 0.5); 
+  backdrop-filter:blur(5px);
+  
+}  
+
+.chartContainer{
+  width: 75%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 25px;
+      padding: 40px;
+}
+.selectbutton{
+  border: 1px solid orange;
+      border-radius: 5px;
+      padding: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      font-family: "Montserrat";
+      cursor: pointer;
+      width: 22%;
+}
+.selectbutton:hover{
+  background-color: orange;
+        color: black;
+}
+/* .activeClass{
+  background-color:orange;
+  color: black; 
+} */
+
+.coinTable{
+  border: 1px solid rgba(87, 87, 87, 0.362);
+  border-radius: 10px;
+  /* height: 500px; */
+}
+
+.blinkText{
+  animation: animate 1.5s linear infinite;
+}
+@keyframes animate{
+  0%{
+    opacity: 0;
+  }
+  50%{
+    opacity: 0.8;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+video{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroText{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: "Montserrat";
+}
+
+
+.overlay{
+  /* border: 2px solid red; */
+  position: absolute;
+  top: 1;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+
+}
+
