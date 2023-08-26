@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Components/Header'
 import CoinPage from './Pages/CoinPage';
 import Homepage from './Pages/Homepage';
+import Alert from './Components/alert';
 
 
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/coins/:id' element={<CoinPage/>}/> 
         </Routes>
     </div>
+    <Alert/>
     </BrowserRouter>
 
     

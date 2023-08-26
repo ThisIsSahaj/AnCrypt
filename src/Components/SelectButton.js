@@ -1,6 +1,8 @@
 import { makeStyles } from "@material-ui/core";
 
-const SelectButton = ({ children, selected, onClick }) => {
+const SelectButton = ({ children, selected, onClick , activeDay }) => {
+
+  console.log("ActiveDay",activeDay)
   const useStyles = makeStyles({
     selectbutton: {
       border: "1px solid gold",
@@ -20,12 +22,15 @@ const SelectButton = ({ children, selected, onClick }) => {
       width: "22%",
       //   margin: 5,
     },
+
+   
   });
 
   const classes = useStyles;
 
   return (
-    <span onClick={onClick} className= 'selectbutton'>
+    <span onClick={onClick} className= {`selectbutton ${activeDay==children.split(' ')[0]  && "activeClass"}`}>
+      {console.log("children",children)}
       {children}
     </span>
   );

@@ -10,21 +10,21 @@ import { Pagination } from "@material-ui/lab";
 
 
 const CoinsTable = () => {
- const [coins, setCoins] = useState([]);
- const [loading, setLoading] = useState(false);
+//  const [coins, setCoins] = useState([]);
+//  const [loading, setLoading] = useState(false);
  const [search, setSearch] = useState("");
  const [page, setPage] = useState(1)
  const navigate = useNavigate();
 
- const { currency, symbol } = CryptoState();
+ const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
-  const fetchCoins = async () => {
-    setLoading(true);
-    const { data } = await axios.get(CoinList(currency));
+  // const fetchCoins = async () => {
+  //   setLoading(true);
+  //   const { data } = await axios.get(CoinList(currency));
     
-    setCoins(data);
-    setLoading(false);
-  };
+  //   setCoins(data);
+  //   setLoading(false);
+  // };
 
 console.log(coins);
   useEffect(() => {
@@ -124,15 +124,23 @@ console.log(coins);
                         onClick={() => navigate(`/coins/${row.id}`)}
                         className='{classes.row} coinRow'
                         key={row.name}
-                        >
-
+                        > 
+                          {/* Rank  */}
+                          <TableCell>
+                          <span style={{color: "white" , fontWeight:"100", }}>{row?.market_cap_rank}</span>
+                          </TableCell>
                           {/* Coin */}
                         <TableCell component='th' scope='row'
                         style={{
                             display: "flex",
                             gap: 15,
+                            fontWeight: 500,
+                            alignItems:'center',
+                            margin: "0px 2px",
+                            
                         }}
                         >
+                          
                           <img src={row?.image} alt={row.name} height="50" 
                           style={{marginBottom: 10}} />
                         
@@ -154,7 +162,9 @@ console.log(coins);
                         
                         {/* Price */}
                         <TableCell
-                        align="right">
+                        align="right"
+                        style={{fontWeight: 700,
+                        fontSize: 16,}}>
                           {symbol}{" "}
                           {numberWithCommas(row.current_price.toFixed(2))}
 
@@ -164,16 +174,37 @@ console.log(coins);
                           <TableCell 
                           align="right"
                           style={{
-                            color: profit > 0 ? "rgb(14, 203, 129" : "red",
-                            fontWeight: 500,
+                            // color: profit > 0 ? "RGB(73, 251, 53)" : "rgb( 253, 28, 3)",
+                            color: profit > 0 ? "#6ccf59" : "#ff4d4d",
+                            fontWeight: 700, fontSize:16,
                           }}
                           >
+                          <div style={{border: profit > 0 ? "1px solid rgba(28, 119, 0, 0.02)" : "rgba(119, 7, 0, 0.02)",
+                            width:"70px",
+                            height:"30px",
+                            textAlign:"center",
+                            padding:"2px",
+                            
+                            
+                            borderRadius:"6px",
+                            
+                            background: profit > 0 ? "rgba(8,209,88,0.1)" : "rgba(255, 68, 68, 0.1)",
+                            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+                            backdropFilter: "blur(3.1px)",
+                            // webkit-backdrop-filter: "blur(3.1px)",
+
+                            float: "right",
+                          }}>
+
                           {profit && "+"}
                           {row.price_change_percentage_24h.toFixed(2)}%
+                            </div>
                           </TableCell>
 
                           {/* Market Cap */}
-                          <TableCell align="right">
+                          <TableCell align="right"
+                          style={{fontWeight: 700,
+                            fontSize: 16,}}>
                             {symbol}{" "}
                             {numberWithCommas(
                               row.market_cap.toString().slice(0, -6)

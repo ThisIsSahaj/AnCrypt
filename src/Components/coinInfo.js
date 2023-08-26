@@ -14,7 +14,24 @@ import { CryptoState } from "../CryptoContext";
 //     CategoryScale,
 //     LinearScale
 // );
-
+const useStyles = makeStyles((theme) => ({
+  container: {
+    width: '75%',
+    // backgroundColor:'red',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 25,
+    padding: 40,
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+      marginTop: 0,
+      padding: 20,
+      paddingTop: 0,
+    },
+  },
+}));
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricalData] = useState();
   const [days, setDays] = useState(1);
@@ -22,25 +39,9 @@ const CoinInfo = ({ coin }) => {
   // const [flag,setflag] = useState(false);
   
 
-  // const useStyles = makeStyles((theme) => ({
-  //   container: {
-  //     width: "75%",
-  //     display: "flex",
-  //     flexDirection: "column",
-  //     alignItems: "center",
-  //     justifyContent: "center",
-  //     marginTop: 25,
-  //     padding: 40,
-  //     [theme.breakpoints.down("md")]: {
-  //       width: "100%",
-  //       marginTop: 0,
-  //       padding: 20,
-  //       paddingTop: 0,
-  //     },
-  //   },
-  // }));
+ 
 
-  // const classes = useStyles;
+  const classes = useStyles();
 
   const fetchHistoricData = async () => {
     const { data } = await axios.get(HistoricalChart(coin.id, days, currency, prices));
@@ -70,7 +71,8 @@ const CoinInfo = ({ coin }) => {
   return (
     
     <ThemeProvider theme={darkTheme}>
-      <div className='chartContainer'>
+      <div className={classes.container}>
+      {/* <div className={classes.container}> */}
         
         {!historicData  ? (
           <CircularProgress
@@ -122,10 +124,14 @@ const CoinInfo = ({ coin }) => {
                 width: "100%",
               }}
             >
+              {console.log("active >>>",days)}
               {chartDays.map((day) => (
                 <SelectButton
                   key={day.value}
-                  onClick={() => {setDays(day.value);
+                  activeDay ={days}
+                  onClick={() => {
+                    
+                    setDays(day.value);
                     // setflag(false);
                   
                   }}
