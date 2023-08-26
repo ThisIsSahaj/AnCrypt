@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+// import { makeStyles } from '@material-ui/core';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header'
@@ -9,6 +9,8 @@ import Alert from './Components/alert';
 
 
 function App() {
+  // require('dotenv').config();
+  // console.log(process.env);
   // const useStyles = makeStyles(() => ({
   // App: {
   //   backgroundColor:"#14161a",
@@ -24,7 +26,7 @@ function App() {
      
     <BrowserRouter>
     <div className='mainDiv'>
-        <Header />
+        <Header />        
         <Routes>
 
         <Route path='/' element={<Homepage/>} exact/>

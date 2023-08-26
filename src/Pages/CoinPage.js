@@ -61,7 +61,7 @@ useEffect(() => {
 
   // const classes = useStyles
 
-if (!coin) return <LinearProgress style={{backgroundColor: "aqua"}}/>;
+if (!coin) return <LinearProgress style={{backgroundColor: "orange"}}/>;
 
 return (<>
      <div className='container'>
