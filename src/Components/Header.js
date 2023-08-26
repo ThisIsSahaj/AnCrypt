@@ -9,10 +9,11 @@ const useStyles= makeStyles (()=> ({
     flex: 1,
     // color: "#248232",
     // color: "#2BA84A",
-    color: "aqua",
+    color: "orange",
     fontFamily: "Montserrat",
     fontWeight: "bold",
     cursor: "pointer",
+    zIndex:"1",
   }
 
 }))
@@ -35,12 +36,12 @@ const Header = () => {
   return (
     <div>
       <ThemeProvider theme={darkTheme} >
-     <AppBar color='transparent' position='static'>
+     <AppBar color='transparent' position='static' >
        <Container>
          <Toolbar>
            <Typography onClick={()=> navigate('/') } className={classes.title} variant='h6'>AnCrypt</Typography>
 
-           <Select variant="outlined" style={{width:100, height:40, marginRight:15,}}
+           <Select variant="outlined" style={{width:100, height:40, marginRight:15, zIndex:"1",}}
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
            >
@@ -49,8 +50,10 @@ const Header = () => {
             <MenuItem value={"INR"}>INR</MenuItem>
 
            </Select>
-          
+          <div style={{zIndex:"1",}}>
+
           {user ? "Logout" :  <AuthModal/>}
+          </div>
          </Toolbar>
        </Container>
      </AppBar>

@@ -58,14 +58,16 @@ const Carousel = () => {
             <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
             <img src={coin?.image} alt={coin.name}  height="80" 
             style={{marginBottom: 10, borderRadius: "15px", height:"100px", width:"100px", padding:"20px",
-            boxShadow:" 20px 20px 50px rgba(0, 0, 0, 0.5)", backgroundColor: "rgba(255, 255, 255, 0.1)",
+            boxShadow:" 20px 20px 50px rgba(0, 0, 0, 0.5)", 
+            // backgroundColor: "rgba(255, 255, 255, 0.1)",
+            backgroundColor: profit > 0 ? "rgba(8,209,88,0.1)" : "rgba(255, 68, 68, 0.1)",
             borderTop:"1px solid rgba(255, 255, 255, 0.5)", borderLeft:"1px solid rgba(255, 255, 255, 0.5)", backdropFilter:"blur(5px)",
         }}
             />
             <span>{coin?.symbol}
                 &nbsp;
                 <span style={{
-                    color: profit > 0 ? "rgb(14, 203, 129)" : "red", fontWeight: 500, }}>
+                    color: profit > 0 ? "#6ccf59" : "#ff4d4d", fontWeight: 500, }}>
                     {profit && "+"} {coin.price_change_percentage_24h?.toFixed(2)}%
                 </span>
             </span>

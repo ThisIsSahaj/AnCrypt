@@ -7,7 +7,24 @@ import { CryptoState } from '../CryptoContext';
 import { numberWithCommas } from './Banner/Carousel';
 import { Pagination } from "@material-ui/lab";
 
+const useStyles = makeStyles(() => ({
+  row: {
+    backgroundColor: "#16171a",
+    cursor: "pointer",
+    "&:hover":{
+      backgroundColor: "#131111",
+    },
+    fontFamily: "Montserrat",
+  },
 
+  pagination:{
+    "& .MuiPaginationItem-root":{
+      color: "orange",
+    },
+  },
+
+
+   }));
 
 const CoinsTable = () => {
 //  const [coins, setCoins] = useState([]);
@@ -48,25 +65,8 @@ console.log(coins);
     ));
    };
 
-   const useStyles = makeStyles(() => ({
-  // row: {
-  //   backgroundColor: "#16171a",
-  //   cursor: "pointer",
-  //   "&:hover":{
-  //     backgroundColor: "#131111",
-  //   },
-  //   fontFamily: "Montserrat",
-  // },
-
-  pagination:{
-    "& .MuiPaginationItem-root":{
-      color: "aqua",
-    },
-  },
-
-
-   }));
-   const classes = useStyles;     //IMP- do not use parenthesis () after useStyles i.e useStyles()
+  
+   const classes = useStyles();     //IMP- do not use parenthesis () after useStyles i.e useStyles()
   
 
   return (
@@ -76,29 +76,31 @@ console.log(coins);
          variant="h4"
          style={{margin: 18, fontFamily: "Montserrat"}}
          >
-         LIVE🔴 Cryptocurrency Prices by Market Cap
+         <span className='blinkText'>LIVE🔴  Cryptocurrency Prices by Market Cap </span>
          </Typography>
           
-        <TextField label="Search For A Crypto Currency..." variant="outlined" 
-        style={{marginBottom: 20, width: "100%", 
+        <TextField label="Search" variant="outlined" 
+       
+        style={{marginBottom: 80, marginTop:40, width: "20%", 
         boxShadow:" 20px 20px 50px rgba(0, 0, 0, 0.5)", backgroundColor: "rgba(255, 255, 255, 0.1)",
         borderTop:"1px solid rgba(255, 255, 255, 0.5)", borderLeft:"1px solid rgba(255, 255, 255, 0.5)", backdropFilter:"blur(5px)",
-        borderRadius: "6px",
+        borderRadius: "6px", 
       
       }}
         onChange={(e) => setSearch(e.target.value)}
         />
 
-        <TableContainer>
+        <TableContainer 
+        className='coinTable'>
           {
             loading?(
-                <LinearProgress style={{backgroundColor: "aqua"}}/>
+                <LinearProgress style={{backgroundColor: "orange"}}/>
             ) : (
 
                <Table>
-                <TableHead style={{backgroundColor: "#00ffff"}}>
+                <TableHead style={{backgroundColor: "orange"}}>
                    <TableRow>
-                    {["Coin", "Price", "24h Change", "Market Cap"].map((head)=>(   //array with mapping
+                    {["Rank","Coin", "Price", "24h Change", "Market Cap"].map((head)=>(   //array with mapping
                         <TableCell style={{
                             color: "black",
                             fontWeight: "700",
@@ -129,6 +131,7 @@ console.log(coins);
                           <TableCell>
                           <span style={{color: "white" , fontWeight:"100", }}>{row?.market_cap_rank}</span>
                           </TableCell>
+
                           {/* Coin */}
                         <TableCell component='th' scope='row'
                         style={{
@@ -145,17 +148,21 @@ console.log(coins);
                           style={{marginBottom: 10}} />
                         
                         <div
-                        style={{display: "flex", flexDirection: "column"}}
+                        style={{display: "flex", flexDirection: "row", alignItems:"center"}}
                         >
+                          <span style={{fontSize: 22, fontWeight:"500"}}>{row.name}</span>
+                          <span style={{color:"#737373", margin:"0px 8px"}}>•</span>
                          <span
                          style={{
                           textTransform: "uppercase",
-                          fontSize: 22,
+                          color: "#737373",
+                          fontSize: 16,
+                          // marginLeft:12,
+                          
                          }}
                          >
                           {row.symbol}
                          </span>
-                         <span style={{color: "darkgrey"}}>{row.name}</span>
                         </div>
                         
                         </TableCell>
