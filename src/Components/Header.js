@@ -3,7 +3,7 @@ import React from 'react'
 import {useNavigate} from "react-router-dom"
 import { CryptoState } from '../CryptoContext';
 import AuthModal from './Authentication/AuthModal';
-import UserSidebar from './Authentication/userSidebar';
+// import UserSidebar from './Authentication/userSidebar';
 
 const useStyles= makeStyles (()=> ({
   title: {
@@ -55,7 +55,7 @@ const Header = () => {
            </Select>
           <div style={{zIndex:"1",}}>
 
-          {user ? <UserSidebar /> :  <AuthModal/>}
+          {user ? "LogOut" :  <AuthModal/>}
           </div>
          </Toolbar>
        </Container>
