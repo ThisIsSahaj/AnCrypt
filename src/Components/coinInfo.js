@@ -16,17 +16,17 @@ import { CryptoState } from "../CryptoContext";
 // );
 const useStyles = makeStyles((theme) => ({
   container: {
-    width: '75%',
+    width: "75%",
     // backgroundColor:'red',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
     marginTop: 25,
     padding: 40,
     [theme.breakpoints.down("md")]: {
       width: "100%",
-      marginTop: 0,
+      marginTop: 60,
       padding: 20,
       paddingTop: 0,
     },

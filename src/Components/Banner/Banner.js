@@ -7,7 +7,7 @@ import bgVideo3 from '../assets/bgVid3.mp4'
 import bgVideo4 from '../assets/bgVid4.mp4'
 import bgVideo5 from '../assets/bgVid5.mp4'
 
-const useStyles = makeStyles(()=>({
+const useStyles = makeStyles((theme)=>({
   banner: {
     
     // backgroundImage: "url(./bgImgBLOR.jpg)",
@@ -16,24 +16,32 @@ const useStyles = makeStyles(()=>({
     // backgroundImage: "url(./bgImgBlocks.jpg)",
     // backgroundPosition: "center",
     // backgroundRepeat: "no-repeat",
-    
-    
-    
-    
+    // border: "2px solid orange",
+     [theme.breakpoints.down("md")]: {
+      height: 800,
+    },
+  
   },
   bannerContent:{
-    height:800,
+    height:600,
     display: "flex",
     flexDirection: "column",
     paddingTop: 25,
     justifyContent: "space-around",
+    // border: "2px solid green",
+    
+    
   },
   tagline:{
     display:"flex",
-    height:"40%",
+    // height:"100%",
     flexDirection:"column",
     justifyContent: "center",
     textAlign: "center",
+    // border: "2px solid red",
+    
+    
+   
   }
 
 }));
@@ -47,30 +55,33 @@ const Banner = () => {
       {/* <video src={bgVideo2} autoPlay loop muted /> */}
       {/* <video src={bgVideo3} autoPlay loop muted /> */}
       {/* <video src={bgVideo4} autoPlay loop muted /> */}
-      <video src={bgVideo5} autoPlay loop muted />
+      <video src={bgVideo5} autoPlay loop muted  />
       <div className="heroText">
         <Container className={classes.bannerContent}>
      
       
             <div className={classes.tagline} >
                 <Typography 
+                
                 variant="h2"
                 style={{
                     fontWeight: "bold",
                     color: "white",
                     marginBottom: 15,
                     fontFamily: "Montserrat",
+                    
                 }}
                 >
                  Track Your Favorite Crypto
                 </Typography>
                 <Typography
-                variant="h5"
+                // variant="h5"
                 style={{
                   color: "white",
                   textTransform: "capitalize",
                   fontFamily: "Montserrat",
                   fontWeight:"600",
+                  // marginBottom:20,
                 
                 }}
                 >

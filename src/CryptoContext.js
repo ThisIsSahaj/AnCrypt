@@ -25,6 +25,8 @@ const CryptoContext = ({children}) => {
    onAuthStateChanged(auth, (user) =>{
    if(user) setUser(user);
    else setUser(null);
+
+   console.log(user);
    });
   }, [])
   
@@ -40,6 +42,8 @@ const CryptoContext = ({children}) => {
   useEffect(() => {
     if(currency === "INR") setSymbol("₹");
     else if(currency === "USD") setSymbol("$");
+    else if(currency === "EUR") setSymbol("€");
+    else if(currency === "JPY") setSymbol("¥");
   }, [currency]); 
 
 

@@ -40,7 +40,7 @@ black 040F0F */
   /* transition: all .2s ease-in-out;  */
 }
 .coinRow:hover{
-  background-color: #131111;
+  /* background-color: #131111; */
   /* transform: scale(1.1);  */
   
 }
@@ -49,43 +49,14 @@ a{
   color: #248232;
 }
 
-.container{
+/* .container{
   display: flex;
 
-}
+} */
 
 
-.sidebar{
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  
-  margin-top: 25px;
-  border-right: 2px solid grey;
-  
-  padding: 20px;
-  
-}
-.coinHeading{
-  font-weight: bolder;
-  margin-bottom: 20px;
-  font-family: "Montserrat";
-  color: gold;
-  
-}
-.coinName{
-  color: orange;
-}
-.coinDescription{
-  width: 100%;
-  font-family: "Montserrat";
-  padding: 25px;
-  padding-bottom: 15px;
-  padding-top: 0px;
-  text-align: justify;
 
-}
+
 .marketData{
   
   padding: 25px;
@@ -160,7 +131,8 @@ video{
 .heroText{
   position: absolute;
   width: 100%;
-  height: 100%;
+  margin: 200px 0px;
+  /* height: 100%; */
   top: 0;
   display: flex;
   flex-direction: column;
@@ -168,6 +140,7 @@ video{
   align-items: center;
   color: white;
   font-family: "Montserrat";
+  /* border: 2px solid hotpink; */
 }
 
 
