@@ -7,9 +7,15 @@ import { CryptoState } from '../CryptoContext';
 import { numberWithCommas } from './Banner/Carousel';
 import { Pagination } from "@material-ui/lab";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
+
+  tableHead:{
+    [theme.breakpoints.down("md")]: {
+      display:"none",
+    },
+  },
   row: {
-    backgroundColor: "#16171a",
+
     cursor: "pointer",
     "&:hover":{
       backgroundColor: "#131111",
@@ -22,7 +28,55 @@ const useStyles = makeStyles(() => ({
       color: "orange",
     },
   },
-
+  coinName:{
+    fontSize: 22, fontWeight:500,
+    [theme.breakpoints.down("md")]: {
+      fontSize:14,
+    },
+  },
+  coinSymbol:{
+    textTransform: "uppercase",
+    color: "#737373",
+    fontSize: 16,
+    marginTop:5,
+    [theme.breakpoints.down("md")]: {
+      fontSize:12,
+    },
+  },
+  coinImg:{
+    marginBottom: 20,
+    marginTop:20,
+    height: 50,
+    [theme.breakpoints.down("md")]: {
+      height: 40,
+      marginBottom: 30,
+      marginTop:20,
+    },
+  },
+  coinRank:{
+    fontWeight: 100,
+    [theme.breakpoints.down("md")]: {
+      display:"none",
+    },
+    
+  },
+  coinPrice:{
+    fontWeight: 700,
+    fontSize: 16,
+    
+    [theme.breakpoints.down("md")]: {
+      fontWeight: 500,
+      fontSize: 12,
+    },
+  },
+  
+  coinMarketCap:{
+    fontWeight: 700,
+    fontSize: 16,
+    [theme.breakpoints.down("md")]: {
+      display:"none",
+    },
+  }
 
    }));
 
@@ -81,7 +135,7 @@ console.log(coins);
           
         <TextField label="Search" variant="outlined" 
        
-        style={{marginBottom: 80, marginTop:40, width: "20%", 
+        style={{marginBottom: 80, marginTop:40, width: "100%", 
         boxShadow:" 20px 20px 50px rgba(0, 0, 0, 0.5)", backgroundColor: "rgba(255, 255, 255, 0.1)",
         borderTop:"1px solid rgba(255, 255, 255, 0.5)", borderLeft:"1px solid rgba(255, 255, 255, 0.5)", backdropFilter:"blur(5px)",
         borderRadius: "6px", 
@@ -98,7 +152,7 @@ console.log(coins);
             ) : (
 
                <Table>
-                <TableHead style={{backgroundColor: "orange"}}>
+                <TableHead style={{backgroundColor: "orange"}} className={classes.tableHead}>
                    <TableRow>
                     {["Rank","Coin", "Price", "24h Change", "Market Cap"].map((head)=>(   //array with mapping
                         <TableCell style={{
@@ -107,7 +161,7 @@ console.log(coins);
                             fontFamily: "Montserrat",
                         }}
                         key={head}
-                        align={head === "Coin" ? "" : "right"}
+                        align={head === "Coin" ? "" : "center"}
                         >
                             {head}
                         </TableCell>
@@ -124,12 +178,14 @@ console.log(coins);
                     return (<>
                         <TableRow 
                         onClick={() => navigate(`/coins/${row.id}`)}
-                        className='{classes.row} coinRow'
+                        className={classes.row}
                         key={row.name}
                         > 
                           {/* Rank  */}
-                          <TableCell>
-                          <span style={{color: "white" , fontWeight:"100", }}>{row?.market_cap_rank}</span>
+                          <TableCell 
+                          align="center"
+                          className={classes.coinRank}>
+                          <span >{row?.market_cap_rank}</span>
                           </TableCell>
 
                           {/* Coin */}
@@ -144,34 +200,23 @@ console.log(coins);
                         }}
                         >
                           
-                          <img src={row?.image} alt={row.name} height="50" 
-                          style={{marginBottom: 10}} />
+                          <img src={row.image} alt={row.name} 
+                          className={classes.coinImg}/>
                         
                         <div
                         style={{display: "flex", flexDirection: "row", alignItems:"center"}}
                         >
-                          <span style={{fontSize: 22, fontWeight:"500"}}>{row.name}</span>
+                          <span className={classes.coinName}>{row.name}</span>
                           <span style={{color:"#737373", margin:"0px 8px"}}>•</span>
-                         <span
-                         style={{
-                          textTransform: "uppercase",
-                          color: "#737373",
-                          fontSize: 16,
-                          // marginLeft:12,
-                          
-                         }}
-                         >
-                          {row.symbol}
-                         </span>
+                         <span className={classes.coinSymbol}>{row.symbol}</span>
                         </div>
                         
                         </TableCell>
                         
                         {/* Price */}
                         <TableCell
-                        align="right"
-                        style={{fontWeight: 700,
-                        fontSize: 16,}}>
+                        align="center"
+                        className={classes.coinPrice}>
                           {symbol}{" "}
                           {numberWithCommas(row.current_price.toFixed(2))}
 
@@ -179,12 +224,13 @@ console.log(coins);
                            
                            {/* 24h Change */}
                           <TableCell 
-                          align="right"
+                          align="center"
                           style={{
                             // color: profit > 0 ? "RGB(73, 251, 53)" : "rgb( 253, 28, 3)",
                             color: profit > 0 ? "#6ccf59" : "#ff4d4d",
-                            fontWeight: 700, fontSize:16,
+                            
                           }}
+                          className={classes.coinPrice}
                           >
                           <div style={{border: profit > 0 ? "1px solid rgba(28, 119, 0, 0.02)" : "rgba(119, 7, 0, 0.02)",
                             width:"70px",
@@ -200,7 +246,7 @@ console.log(coins);
                             backdropFilter: "blur(3.1px)",
                             // webkit-backdrop-filter: "blur(3.1px)",
 
-                            float: "right",
+                            float: "center",
                           }}>
 
                           {profit && "+"}
@@ -209,14 +255,13 @@ console.log(coins);
                           </TableCell>
 
                           {/* Market Cap */}
-                          <TableCell align="right"
-                          style={{fontWeight: 700,
-                            fontSize: 16,}}>
+                          <TableCell align="center"
+                          className={classes.coinMarketCap}>
                             {symbol}{" "}
                             {numberWithCommas(
                               row.market_cap.toString().slice(0, -6)
                             )}
-                            &nbsp; M
+                            M
                           </TableCell>
                         </TableRow>
                             </>
