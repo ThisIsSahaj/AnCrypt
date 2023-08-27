@@ -3,13 +3,12 @@ import React from 'react'
 import {useNavigate} from "react-router-dom"
 import { CryptoState } from '../CryptoContext';
 import AuthModal from './Authentication/AuthModal';
-// import UserSidebar from './Authentication/userSidebar';
+import UserSidebar from './Authentication/userSidebar';
 
 const useStyles= makeStyles (()=> ({
   title: {
     flex: 1,
-    // color: "#248232",
-    // color: "#2BA84A",
+   
     color: "orange",
     fontFamily: "Montserrat",
     fontWeight: "bold",
@@ -24,7 +23,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const { currency, setCurrency, user}= CryptoState();
-  console.log(currency);
+ 
 
   const darkTheme = createTheme({ 
     palette: {
@@ -55,7 +54,7 @@ const Header = () => {
            </Select>
           <div style={{zIndex:"1",}}>
 
-          {user ? "LogOut" :  <AuthModal/>}
+          {user ? <UserSidebar /> :  <AuthModal/>}
           </div>
          </Toolbar>
        </Container>

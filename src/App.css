@@ -33,26 +33,19 @@ black 040F0F */
   min-height: 100vh;
 }
 .coinRow{
-  /* background-color:#16171a; */
+  
   background-color:black;
   cursor: pointer;
   font-family: "Montserrat";
-  /* transition: all .2s ease-in-out;  */
-}
-.coinRow:hover{
-  /* background-color: #131111; */
-  /* transform: scale(1.1);  */
   
 }
+
 a{
   text-decoration: none;
   color: #248232;
 }
 
-/* .container{
-  display: flex;
 
-} */
 
 
 
@@ -96,10 +89,7 @@ a{
   background-color: orange;
         color: black;
 }
-/* .activeClass{
-  background-color:orange;
-  color: black; 
-} */
+
 
 .coinTable{
   border: 1px solid rgba(87, 87, 87, 0.362);

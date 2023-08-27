@@ -2,7 +2,6 @@ import { Container, createTheme, LinearProgress, makeStyles, Table, TableBody, T
 import axios from 'axios';
 import React, { useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import { CoinList } from '../config/api';
 import { CryptoState } from '../CryptoContext';
 import { numberWithCommas } from './Banner/Carousel';
 import { Pagination } from "@material-ui/lab";
@@ -64,9 +63,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     fontSize: 16,
     
+    
+    
     [theme.breakpoints.down("md")]: {
       fontWeight: 500,
       fontSize: 12,
+      
     },
   },
   
@@ -89,15 +91,8 @@ const CoinsTable = () => {
 
  const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
-  // const fetchCoins = async () => {
-  //   setLoading(true);
-  //   const { data } = await axios.get(CoinList(currency));
-    
-  //   setCoins(data);
-  //   setLoading(false);
-  // };
 
-console.log(coins);
+
   useEffect(() => {
     fetchCoins();
   }, [currency]);
@@ -120,7 +115,7 @@ console.log(coins);
    };
 
   
-   const classes = useStyles();     //IMP- do not use parenthesis () after useStyles i.e useStyles()
+   const classes = useStyles();    
   
 
   return (
@@ -195,7 +190,7 @@ console.log(coins);
                             gap: 15,
                             fontWeight: 500,
                             alignItems:'center',
-                            margin: "0px 2px",
+                            
                             
                         }}
                         >

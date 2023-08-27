@@ -38,8 +38,19 @@ heading:{
   marginBottom: 20,
   fontFamily: "Montserrat",
   color: "orange",
+ 
+},
+coinData:{
+  fontWeight: "bold",
+  marginBottom: 20,
+  fontFamily: "Montserrat",
+  fontSize: 24,
+  color: "orange",
+  alignItems: "center",
   [theme.breakpoints.down("md")] : {
     fontWeight: "normal",
+    fontSize:1,
+    
   },
 },
 description:{
@@ -65,7 +76,7 @@ const CoinPage = () => {
   const { data } = await axios.get(SingleCoin(id));
     setCoin(data);
 };
-console.log(coin);
+
 useEffect(() => {
  fetchCoin();
  // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -100,38 +111,38 @@ return (<>
        
       
       <div className="marketData">
-        <span style={{display: "flex"}}>
-          <Typography variant='h5' className={classes.heading}>
+        <span style={{display: "flex"}} className={classes.coinData}>
+          <Typography variant='h5' >
             Rank:
           </Typography>
           &nbsp; &nbsp;
-          <Typography variant='h6' style={{fontFamily: "Montserrat"}}>
+          <Typography variant='h6' style={{fontFamily: "Montserrat", color: "white"}}>
           {coin?.market_cap_rank}
           </Typography>
         </span>
-        <span style={{display: "flex"}}>
-          <Typography variant='h5' className={classes.heading}>
+        <span style={{display: "flex"}} className={classes.coinData}>
+          <Typography variant='h5' >
             Current Price:
           </Typography>
           &nbsp; &nbsp;
-          <Typography variant='h6' style={{fontFamily: "Montserrat",}}>
+          <Typography variant='h6' style={{fontFamily: "Montserrat", color:"white"}}>
           {symbol}{" "}
           {numberWithCommas(
             coin?.market_data.current_price[currency.toLowerCase()]
           )}
           </Typography>
         </span>
-        <span style={{display: "flex"}}>
-          <Typography variant='h5' className={classes.heading}>
+        <span style={{display: "flex"}} className={classes.coinData}>
+          <Typography variant='h5' >
             Market Cap:{" "}
           </Typography>
           &nbsp; &nbsp;
-          <Typography variant='h6' style={{fontFamily: "Montserrat",}}>
+          <Typography variant='h6' style={{fontFamily: "Montserrat", color:"white"}}>
           {numberWithCommas(
             coin?.market_data.market_cap[currency.toLowerCase()]
             .toString()
             .slice(0, -6)
-          )} &nbsp; M
+          )} M
           </Typography>
         </span>
       </div>

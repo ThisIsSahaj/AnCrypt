@@ -31,6 +31,19 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: 0,
     },
   },
+  buttons:{
+    display: "flex",
+    marginTop: 20,
+    justifyContent: "space-around",
+    width: "50%",
+    
+    [theme.breakpoints.down("md")]: {
+      width: "100%",
+      
+      
+    },
+
+  },
 }));
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricalData] = useState();
@@ -50,9 +63,7 @@ const CoinInfo = ({ coin }) => {
     
   };
 
-  console.log(coin);
-  console.log("days",days);
-  console.log("data", historicData);
+  
 
   useEffect(() => {
     fetchHistoricData();
@@ -116,15 +127,8 @@ const CoinInfo = ({ coin }) => {
             />
              
             {/* buttons */}
-            <div
-              style={{
-                display: "flex",
-                marginTop: 20,
-                justifyContent: "space-around",
-                width: "100%",
-              }}
-            >
-              {console.log("active >>>",days)}
+            <div className={classes.buttons} >
+              
               {chartDays.map((day) => (
                 <SelectButton
                   key={day.value}
