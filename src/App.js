@@ -10,7 +10,7 @@ import Alert from './Components/alert';
 
 function App() {
   // require('dotenv').config();
-  // console.log(process.env);
+  
   // const useStyles = makeStyles(() => ({
   // App: {
   //   backgroundColor:"#14161a",
