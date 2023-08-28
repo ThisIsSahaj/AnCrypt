@@ -25,7 +25,7 @@ const Signup = ({handleClose}) => {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
       
-      console.log(result);
+      
       
       setAlert({
         open: true,
@@ -79,7 +79,7 @@ const Signup = ({handleClose}) => {
   <Button 
   variant='container'
   size='large'
-  style={{backgroundColor: "#00ffff", color:"black"}}
+  style={{backgroundColor: "orange", color:"black"}}
   onClick={handleSubmit}
    >
     Sign Up

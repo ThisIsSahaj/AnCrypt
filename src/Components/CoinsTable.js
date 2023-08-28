@@ -1,10 +1,16 @@
 import { Container, createTheme, LinearProgress, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead,  TableRow, TextField, ThemeProvider, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState} from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CryptoState } from '../CryptoContext';
 import { numberWithCommas } from './Banner/Carousel';
 import { Pagination } from "@material-ui/lab";
+import {AiOutlineStar} from 'react-icons/ai'
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
+
+import { SingleCoin } from '../config/api';
+import { async } from '@firebase/util';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -85,12 +91,70 @@ const useStyles = makeStyles((theme) => ({
 const CoinsTable = () => {
 //  const [coins, setCoins] = useState([]);
 //  const [loading, setLoading] = useState(false);
- const [search, setSearch] = useState("");
+const { id } = useParams();
+const [search, setSearch] = useState("");
  const [page, setPage] = useState(1)
  const navigate = useNavigate();
+ const [coin, setCoin] = useState();
+ const { currency, symbol, coins, loading, fetchCoins, user, watchlist, setAlert } = CryptoState();
 
- const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
+//  const fetchCoin = async () => {
+//   const { data } = await axios.get(SingleCoin(id));
+//     setCoin(data);
+// };
+// useEffect(() => {
+//   fetchCoin();
+  
+//  }, []);
 
+ // Watchlist functionality
+// const inWatchlist = watchlist.includes(coin?.id);
+
+// const addToWatchlist= async() => {
+//   const coinRef = doc(db, "watchlist", user.uid);
+  
+//   try {
+//      await setDoc(coinRef,{
+//             coins:watchlist?[...watchlist, coin?.id]:[coin?.id],
+//           });  
+
+//           setAlert({
+//             open: true,
+//             message: `${coin.name} Added to your Watchlist!`,
+//             type: "success",
+//           });
+//   } catch (error) {
+//      setAlert({
+//       open: true,
+//       message: error.message,
+//       type: "error",
+//      });
+//   }
+// };
+
+//Remove from Watchlist function
+// const removeFromWatchlist = async() => {
+//   const coinRef = doc(db, "watchlist", user.uid);
+  
+//   try {
+//      await setDoc(coinRef,{
+//             coins: watchlist.filter((watch) => watch !== coin?.id)}, 
+//             {merge: 'true'}
+//           );  
+
+//           setAlert({
+//             open: true,
+//             message: `${coin.name} Removed from your Watchlist!`,
+//             type: "success",
+//           });
+//   } catch (error) {
+//      setAlert({
+//       open: true,
+//       message: error.message,
+//       type: "error",
+//      });
+//   };
+// };
 
 
   useEffect(() => {
@@ -113,6 +177,10 @@ const CoinsTable = () => {
         coin.symbol.toLowerCase().includes(search)
     ));
    };
+
+
+
+
 
   
    const classes = useStyles();    
@@ -149,7 +217,7 @@ const CoinsTable = () => {
                <Table>
                 <TableHead style={{backgroundColor: "orange"}} className={classes.tableHead}>
                    <TableRow>
-                    {["Rank","Coin", "Price", "24h Change", "Market Cap"].map((head)=>(   //array with mapping
+                    {["Rank", "Coin", "Price", "24h Change", "Market Cap"].map((head)=>(   //array with mapping
                         <TableCell style={{
                             color: "black",
                             fontWeight: "700",
@@ -182,6 +250,19 @@ const CoinsTable = () => {
                           className={classes.coinRank}>
                           <span >{row?.market_cap_rank}</span>
                           </TableCell>
+
+                          {/* Watchlist*/}
+                          {/* <TableCell 
+                          align="center"
+                          >
+                          <span ><AiOutlineStar
+                              style={{cursor: "pointer"}}
+                              fontSize="22"
+                              onClick={addToWatchlist}
+                              
+                              /></span>
+                          </TableCell> */}
+
 
                           {/* Coin */}
                         <TableCell component='th' scope='row'
