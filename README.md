@@ -41,7 +41,7 @@ Ready to dive into the world of crypto tracking? Follow these simple steps to ge
 
 ### Installation
 
-1. Get a free API Key at https://www.coingecko.com/
+
 
 1. Clone the Repository: https://github.com/ThisIsSahaj/AnCrypt
 
