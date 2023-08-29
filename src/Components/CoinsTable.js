@@ -1,11 +1,11 @@
-import { Container, createTheme, LinearProgress, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead,  TableRow, TextField, ThemeProvider, Typography } from '@material-ui/core';
+import { Button, Container, createTheme, LinearProgress, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead,  TableRow, TextField, ThemeProvider, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { CryptoState } from '../CryptoContext';
 import { numberWithCommas } from './Banner/Carousel';
 import { Pagination } from "@material-ui/lab";
-import {AiOutlineStar} from 'react-icons/ai'
+import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
@@ -98,63 +98,21 @@ const [search, setSearch] = useState("");
  const [coin, setCoin] = useState();
  const { currency, symbol, coins, loading, fetchCoins, user, watchlist, setAlert } = CryptoState();
 
-//  const fetchCoin = async () => {
-//   const { data } = await axios.get(SingleCoin(id));
-//     setCoin(data);
-// };
-// useEffect(() => {
-//   fetchCoin();
+ const fetchCoin = async () => {
+  const { data } = await axios.get(SingleCoin(id));
+    setCoin(data);
+};
+useEffect(() => {
+  fetchCoin();
   
-//  }, []);
+ }, []);
 
  // Watchlist functionality
-// const inWatchlist = watchlist.includes(coin?.id);
 
-// const addToWatchlist= async() => {
-//   const coinRef = doc(db, "watchlist", user.uid);
-  
-//   try {
-//      await setDoc(coinRef,{
-//             coins:watchlist?[...watchlist, coin?.id]:[coin?.id],
-//           });  
 
-//           setAlert({
-//             open: true,
-//             message: `${coin.name} Added to your Watchlist!`,
-//             type: "success",
-//           });
-//   } catch (error) {
-//      setAlert({
-//       open: true,
-//       message: error.message,
-//       type: "error",
-//      });
-//   }
-// };
 
-//Remove from Watchlist function
-// const removeFromWatchlist = async() => {
-//   const coinRef = doc(db, "watchlist", user.uid);
-  
-//   try {
-//      await setDoc(coinRef,{
-//             coins: watchlist.filter((watch) => watch !== coin?.id)}, 
-//             {merge: 'true'}
-//           );  
 
-//           setAlert({
-//             open: true,
-//             message: `${coin.name} Removed from your Watchlist!`,
-//             type: "success",
-//           });
-//   } catch (error) {
-//      setAlert({
-//       open: true,
-//       message: error.message,
-//       type: "error",
-//      });
-//   };
-// };
+
 
 
   useEffect(() => {
@@ -207,6 +165,14 @@ const [search, setSearch] = useState("");
         onChange={(e) => setSearch(e.target.value)}
         />
 
+
+     
+      
+
+
+
+
+        {/* coin table */}
         <TableContainer 
         className='coinTable'>
           {
@@ -217,7 +183,7 @@ const [search, setSearch] = useState("");
                <Table>
                 <TableHead style={{backgroundColor: "orange"}} className={classes.tableHead}>
                    <TableRow>
-                    {["Rank", "Coin", "Price", "24h Change", "Market Cap"].map((head)=>(   //array with mapping
+                    {["Rank","", "Coin", "Price", "24h Change", "Market Cap"].map((head)=>(   //array with mapping
                         <TableCell style={{
                             color: "black",
                             fontWeight: "700",
@@ -238,34 +204,87 @@ const [search, setSearch] = useState("");
                  .map((row) => {
                     const profit = row.price_change_percentage_24h > 0;
 
+
+                    const inWatchlist = watchlist.includes(row?.id);
+                    const addToWatchlist= async() => {
+                      const coinRef = doc(db, "watchlist", user.uid);
+                      
+                      try {
+                         await setDoc(coinRef,{
+                                coins:watchlist?[...watchlist, row?.id]:[row?.id],
+                              });  
+                    
+                              setAlert({
+                                open: true,
+                                message: `${row.id} Added to your Watchlist!`,
+                                type: "success",
+                              });
+                      } catch (error) {
+                         setAlert({
+                          open: true,
+                          message: error.message,
+                          type: "error",
+                         });
+                      }
+                    };
+                        
+                    // Remove from Watchlist function
+                    const removeFromWatchlist = async() => {
+                      const coinRef = doc(db, "watchlist", user.uid);
+                      
+                      try {
+                         await setDoc(coinRef,{
+                                coins: watchlist.filter((watch) => watch !== row?.id)}, 
+                                {merge: 'true'}
+                              );  
+                    
+                              setAlert({
+                                open: true,
+                                message: `${row.name} Removed from your Watchlist!`,
+                                type: "success",
+                              });
+                      } catch (error) {
+                         setAlert({
+                          open: true,
+                          message: error.message,
+                          type: "error",
+                         });
+                      };
+                    };
+
                     return (<>
+                      
                         <TableRow 
-                        onClick={() => navigate(`/coins/${row.id}`)}
+                        // onClick={() => navigate(`/coins/${row.id}`)}
                         className={classes.row}
                         key={row.name}
                         > 
                           {/* Rank  */}
                           <TableCell 
+                          onClick={() => navigate(`/coins/${row.id}`)}
                           align="center"
                           className={classes.coinRank}>
                           <span >{row?.market_cap_rank}</span>
                           </TableCell>
 
-                          {/* Watchlist*/}
-                          {/* <TableCell 
-                          align="center"
-                          >
-                          <span ><AiOutlineStar
-                              style={{cursor: "pointer"}}
-                              fontSize="22"
-                              onClick={addToWatchlist}
-                              
-                              /></span>
-                          </TableCell> */}
+                          
+                          
+
+                          {/* Watchlist  */}
+                          <TableCell>
+                          <span
+                            onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
+                            // onMouseEnter={() => {inWatchlist ? <AiOutlineStar style={{cursor: "pointer"}} fontSize="22"/> :   <AiFillStar style={{cursor: "pointer" , color:"orange"}} fontSize="22"/> }}
+                            >
+                            
+                           {inWatchlist ? <AiFillStar style={{cursor: "pointer" , color:"orange"}} fontSize="22"/> : <AiOutlineStar style={{cursor: "pointer"}} fontSize="22"/>}
+                           </span>  
+                          </TableCell>
 
 
                           {/* Coin */}
                         <TableCell component='th' scope='row'
+                        onClick={() => navigate(`/coins/${row.id}`)}
                         style={{
                             display: "flex",
                             gap: 15,
@@ -291,6 +310,7 @@ const [search, setSearch] = useState("");
                         
                         {/* Price */}
                         <TableCell
+                        onClick={() => navigate(`/coins/${row.id}`)}
                         align="center"
                         className={classes.coinPrice}>
                           {symbol}{" "}
@@ -300,6 +320,7 @@ const [search, setSearch] = useState("");
                            
                            {/* 24h Change */}
                           <TableCell 
+                          onClick={() => navigate(`/coins/${row.id}`)}
                           align="center"
                           style={{
                             // color: profit > 0 ? "RGB(73, 251, 53)" : "rgb( 253, 28, 3)",
@@ -332,6 +353,7 @@ const [search, setSearch] = useState("");
 
                           {/* Market Cap */}
                           <TableCell align="center"
+                          onClick={() => navigate(`/coins/${row.id}`)}
                           className={classes.coinMarketCap}>
                             {symbol}{" "}
                             {numberWithCommas(
@@ -365,6 +387,8 @@ const [search, setSearch] = useState("");
          
          />
         </Container>
+
+
     </ThemeProvider>
   )
 }

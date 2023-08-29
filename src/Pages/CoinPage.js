@@ -199,7 +199,7 @@ return (<>
         </span>
         {/* WatchList button  */}
         
-        {user && (
+        
           <Button 
           variant='outlined'
           style={{width:"100%", height: 40, 
@@ -208,7 +208,7 @@ return (<>
           >
             {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
           </Button>
-        )}
+        
       </div>
 
 
