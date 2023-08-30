@@ -35,6 +35,14 @@ Crafted with cutting-edge technologies, AnCrypt is built with
 * [Firebase](https://firebase.google.com/)
 * [Material-UI](https://mui.com/)
 
+## Features
+
+- One Click Google Sign in
+- Add coins to your watchlist
+- LIVE cryptocurrency price, chart, 24h change and more.
+- Responsive for all screen sizes
+- Search for a particular coin
+
 ## Getting Started
 
 Ready to dive into the world of crypto tracking? Follow these simple steps to get started:
