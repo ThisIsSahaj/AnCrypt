@@ -272,13 +272,13 @@ useEffect(() => {
 
                           {/* Watchlist  */}
                           <TableCell>
-                          <span
+                         { user && <span
                             onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
                             // onMouseEnter={() => {inWatchlist ? <AiOutlineStar style={{cursor: "pointer"}} fontSize="22"/> :   <AiFillStar style={{cursor: "pointer" , color:"orange"}} fontSize="22"/> }}
                             >
                             
                            {inWatchlist ? <AiFillStar style={{cursor: "pointer" , color:"orange"}} fontSize="22"/> : <AiOutlineStar style={{cursor: "pointer"}} fontSize="22"/>}
-                           </span>  
+                           </span>  }
                           </TableCell>
 
 

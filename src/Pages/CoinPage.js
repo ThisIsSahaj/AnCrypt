@@ -12,6 +12,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { async } from '@firebase/util';
 
+
 const useStyles = makeStyles((theme) => ({
   container: {
     
@@ -88,9 +89,9 @@ useEffect(() => {
 
 
 
-
 // Watchlist working function
 const inWatchlist = watchlist.includes(coin?.id);
+
 
 const addToWatchlist= async() => {
   const coinRef = doc(db, "watchlist", user.uid);
@@ -137,6 +138,9 @@ const removeFromWatchlist = async() => {
      });
   };
 };
+
+const isUser = inWatchlist ? removeFromWatchlist : addToWatchlist;
+
 
   const classes = useStyles();
 
@@ -200,14 +204,17 @@ return (<>
         {/* WatchList button  */}
         
         
-          <Button 
+         {user &&  <Button 
           variant='outlined'
           style={{width:"100%", height: 40, 
           backgroundColor: inWatchlist ? "red" : "orange",}}
           onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
+           
           >
+            
             {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
           </Button>
+          }
         
       </div>
 
