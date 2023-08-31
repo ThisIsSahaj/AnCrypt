@@ -53,7 +53,7 @@ const Header = () => {
 
            </Select>
           <div style={{zIndex:"1",}}>
-
+          
           {user ? <UserSidebar /> :  <AuthModal/>}
           </div>
          </Toolbar>
