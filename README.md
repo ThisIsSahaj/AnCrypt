@@ -42,6 +42,7 @@ Crafted with cutting-edge technologies, AnCrypt is built with
 - LIVE cryptocurrency price, chart, 24h change and more.
 - Responsive for all screen sizes
 - Search for a particular coin
+- Portfolio sharing with friends [coming soon]
 
 ## Getting Started
 
