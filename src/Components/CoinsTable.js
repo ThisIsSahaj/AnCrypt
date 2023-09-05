@@ -11,7 +11,6 @@ import { db } from '../firebase';
 
 import { SingleCoin } from '../config/api';
 import { async } from '@firebase/util';
-import StarWatchlist from './starWatchlist';
 import StarAuthModal from './Authentication/starAuthModal';
 
 const useStyles = makeStyles((theme) => ({
