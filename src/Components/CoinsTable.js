@@ -11,6 +11,8 @@ import { db } from '../firebase';
 
 import { SingleCoin } from '../config/api';
 import { async } from '@firebase/util';
+import StarWatchlist from './starWatchlist';
+import StarAuthModal from './Authentication/starAuthModal';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -204,7 +206,7 @@ useEffect(() => {
                  .map((row) => {
                     const profit = row.price_change_percentage_24h > 0;
 
-
+                    
                     const inWatchlist = watchlist.includes(row?.id);
                     const addToWatchlist= async() => {
                       const coinRef = doc(db, "watchlist", user.uid);
@@ -251,7 +253,7 @@ useEffect(() => {
                          });
                       };
                     };
-
+                   
                     return (<>
                       
                         <TableRow 
@@ -272,13 +274,10 @@ useEffect(() => {
 
                           {/* Watchlist  */}
                           <TableCell>
-                         { user && <span
-                            onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
-                            // onMouseEnter={() => {inWatchlist ? <AiOutlineStar style={{cursor: "pointer"}} fontSize="22"/> :   <AiFillStar style={{cursor: "pointer" , color:"orange"}} fontSize="22"/> }}
-                            >
+                            {/* AddToWatchList star or Login page */}
+                            {user ? (inWatchlist ? <AiFillStar onClick={removeFromWatchlist} style={{cursor: "pointer" , color:"orange"}} fontSize="22"/> : <AiOutlineStar onClick={addToWatchlist}  style={{cursor: "pointer"}} fontSize="22"/> ) :  <StarAuthModal/>}
                             
-                           {inWatchlist ? <AiFillStar style={{cursor: "pointer" , color:"orange"}} fontSize="22"/> : <AiOutlineStar style={{cursor: "pointer"}} fontSize="22"/>}
-                           </span>  }
+                         
                           </TableCell>
 
 
