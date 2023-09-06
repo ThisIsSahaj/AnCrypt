@@ -14,9 +14,6 @@ import { async } from '@firebase/util';
 import { StarAuthModal } from './Authentication/AuthModal';
 
 
-import StarAuthModal from './Authentication/starAuthModal';
-
-
 const useStyles = makeStyles((theme) => ({
 
   tableHead:{
