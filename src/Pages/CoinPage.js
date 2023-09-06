@@ -11,6 +11,7 @@ import CoinInfo from '../Components/coinInfo';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { async } from '@firebase/util';
+import { ButtonAuthModal } from '../Components/Authentication/AuthModal';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -139,7 +140,7 @@ const removeFromWatchlist = async() => {
   };
 };
 
-const isUser = inWatchlist ? removeFromWatchlist : addToWatchlist;
+
 
 
   const classes = useStyles();
@@ -204,7 +205,19 @@ return (<>
         {/* WatchList button  */}
         
         
-         {user &&  <Button 
+         {user ?  (<Button 
+          variant='outlined'
+          style={{width:"100%", height: 40, 
+          backgroundColor: inWatchlist ? "red" : "orange",}}
+          onClick={inWatchlist ? removeFromWatchlist : addToWatchlist}
+           
+          >
+            
+            {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+          </Button>)
+          :<ButtonAuthModal/>
+          }
+         {/* {user &&  <Button 
           variant='outlined'
           style={{width:"100%", height: 40, 
           backgroundColor: inWatchlist ? "red" : "orange",}}
@@ -214,7 +227,7 @@ return (<>
             
             {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
           </Button>
-          }
+          } */}
         
       </div>
 

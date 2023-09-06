@@ -8,10 +8,14 @@ import { Pagination } from "@material-ui/lab";
 import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-
 import { SingleCoin } from '../config/api';
 import { async } from '@firebase/util';
+
+import { StarAuthModal } from './Authentication/AuthModal';
+
+
 import StarAuthModal from './Authentication/starAuthModal';
+
 
 const useStyles = makeStyles((theme) => ({
 
