@@ -192,7 +192,7 @@ const [search, setSearch] = useState("");
                     
                               setAlert({
                                 open: true,
-                                message: `${coin.name} Removed from your Watchlist!`,
+                                message: `${coin.name} Removed from your Portfolio!`,
                                 type: "success",
                               });
                       } catch (error) {
