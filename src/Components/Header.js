@@ -20,7 +20,7 @@ const useStyles= makeStyles (()=> ({
    fontFamily: "Montserrat",
    fontWeight: "normal",
    cursor: "pointer",
-   margin: "0px 50px", 
+   margin: "0px 20px", 
   }
 
 }))
