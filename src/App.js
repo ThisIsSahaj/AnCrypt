@@ -1,5 +1,5 @@
 // import { makeStyles } from '@material-ui/core';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter,HashRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header'
 import CoinPage from './Pages/CoinPage';
@@ -16,7 +16,7 @@ function App() {
   
   return (
      
-    <BrowserRouter>
+    <HashRouter>
     <div className='mainDiv'>
         <Header />        
         <Routes>
@@ -28,7 +28,7 @@ function App() {
         </Routes>
     </div>
     <Alert/>
-    </BrowserRouter>
+    </HashRouter>
 
     
    
