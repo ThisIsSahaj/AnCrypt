@@ -336,7 +336,7 @@ const [search, setSearch] = useState("");
         </Container>
 
         <span>Share your portfolio with this link-  
-      <Link to={`/user/${user.uid}`}>https://ancrypt.onrender.com/#/portfolio/{user.uid}</Link> 
+      <Link to={`/publicPortfolio/${user.uid}`}>https://ancrypt.onrender.com/#/publicPortfolio/{user.uid}</Link> 
       </span>
     </ThemeProvider>
   )
