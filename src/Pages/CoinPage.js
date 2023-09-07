@@ -74,9 +74,10 @@ const CoinPage = () => {
  
  const { id } = useParams();
  const [coin, setCoin] = useState();
- const {currency, symbol, user, watchlist, setAlert} = CryptoState();
+ const {currency, symbol, user, watchlist, setAlert, publicPortfolio, setPublicPortfolio} = CryptoState();
  
-
+ setPublicPortfolio(watchlist); 
+ 
  const fetchCoin = async () => {
   const { data } = await axios.get(SingleCoin(id));
     setCoin(data);
@@ -114,6 +115,17 @@ const addToWatchlist= async() => {
       type: "error",
      });
   }
+const publicRef = doc(db, "publicPortfolio", user.uid);
+  
+  try {
+     await setDoc(publicRef,{
+            coins:publicPortfolio?[...publicPortfolio, coin?.id]:[coin?.id],
+          });  
+
+         
+  } catch (error) {
+    
+  }
 };
 
 //Remove from Watchlist function
@@ -137,6 +149,18 @@ const removeFromWatchlist = async() => {
       message: error.message,
       type: "error",
      });
+  };
+  const publicRef = doc(db, "publicPortfolio", user.uid);
+  
+  try {
+     await setDoc(publicRef,{
+            coins: publicPortfolio.filter((watch) => watch !== coin?.id)}, 
+            {merge: 'true'}
+          );  
+
+         
+  } catch (error) {
+     
   };
 };
 

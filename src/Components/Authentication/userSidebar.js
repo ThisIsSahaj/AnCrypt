@@ -81,7 +81,7 @@ export default function UserSidebar() {
     right: false,
   });
 
-  const {user, setAlert, watchlist, coins, symbol} = CryptoState();
+  const {user, setAlert, watchlist, coins, symbol, publicPortfolio} = CryptoState();
 
 
 
@@ -115,6 +115,18 @@ export default function UserSidebar() {
         message: error.message,
         type: "error",
        });
+    };
+    const publicRef = doc(db, "publicPortfolio", user.uid);
+  
+    try {
+       await setDoc(publicRef,{
+              coins: publicPortfolio.filter((watch) => watch !== coin?.id)}, 
+              {merge: 'true'}
+            );  
+  
+           
+    } catch (error) {
+       
     };
   };
 
@@ -183,7 +195,7 @@ export default function UserSidebar() {
                     {/* Watchlist container */}
                     <div className={classes.watchlist}>
                      <span style={{fontSize:15, textShadow: "0 0 5px black"}}>
-                     Watchlist
+                     Your Watchlist
                      </span>
                        
                        {coins.map((coin) => {
