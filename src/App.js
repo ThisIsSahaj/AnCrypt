@@ -7,6 +7,7 @@ import Homepage from './Pages/Homepage';
 import Alert from './Components/alert';
 import Portfolio from './Components/Portfolio';
 import PublicPortfolio from './Components/publicPortfolio';
+import PublicPort from './Pages/PublicPort';
 
 
 
@@ -23,7 +24,7 @@ function App() {
         <Route path='/' element={<Homepage/>} exact/>
         <Route path='/coins/:id' element={<CoinPage/>}/> 
         <Route path='/portfolio/:user' element={<Portfolio/>} />
-        <Route path="/user/:userId" element={<PublicPortfolio/>} />
+        <Route path="/user/:userId" element={<PublicPort/>} />
         </Routes>
     </div>
     <Alert/>
