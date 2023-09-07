@@ -24,7 +24,7 @@ function App() {
         <Route path='/' element={<Homepage/>} exact/>
         <Route path='/coins/:id' element={<CoinPage/>}/> 
         <Route path='/portfolio/:user' element={<Portfolio/>} />
-        <Route path="/user/:userId" element={<PublicPort/>} />
+        <Route path="/publicPortfolio/:userId" element={<PublicPort/>} />
         </Routes>
     </div>
     <Alert/>
