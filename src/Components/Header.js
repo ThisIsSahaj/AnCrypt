@@ -1,6 +1,6 @@
-import { AppBar, Container, createTheme, makeStyles, MenuItem, Select, ThemeProvider, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Container, createTheme, makeStyles, MenuItem, Select, ThemeProvider, Toolbar, Typography, withTheme } from '@material-ui/core';
 import React from 'react'
-import {useNavigate} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import { CryptoState } from '../CryptoContext';
 import AuthModal from './Authentication/AuthModal';
 import UserSidebar from './Authentication/userSidebar';
@@ -14,6 +14,13 @@ const useStyles= makeStyles (()=> ({
     fontWeight: "bold",
     cursor: "pointer",
     zIndex:"1",
+  },
+  portfolio:{
+   color: "orange",
+   fontFamily: "Montserrat",
+   fontWeight: "normal",
+   cursor: "pointer",
+   margin: "0px 50px", 
   }
 
 }))
@@ -41,15 +48,17 @@ const Header = () => {
          <Toolbar>
            <Typography onClick={()=> navigate('/') } className={classes.title} variant='h6'>AnCrypt</Typography>
 
+           <Link className={classes.portfolio} to={`/portfolio/${user.displayName || user.email}`}>Portfolio</Link>   
            <Select variant="outlined" style={{width:100, height:40, marginRight:15, zIndex:"1",}}
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
            >
 
-            <MenuItem value={"USD"}>USD</MenuItem>
-            <MenuItem value={"INR"}>INR</MenuItem>
-            <MenuItem value={"EUR"}>EUR</MenuItem>
-            <MenuItem value={"JPY"}>JPY</MenuItem>
+            <MenuItem value={"USD"}>USD $</MenuItem>
+            <MenuItem value={"INR"}>INR ₹</MenuItem>
+            <MenuItem value={"GBP"}>GBP £</MenuItem>
+            <MenuItem value={"EUR"}>EUR €</MenuItem>
+            <MenuItem value={"JPY"}>JPY ¥</MenuItem>
 
            </Select>
           <div style={{zIndex:"1",}}>

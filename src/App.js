@@ -5,22 +5,13 @@ import Header from './Components/Header'
 import CoinPage from './Pages/CoinPage';
 import Homepage from './Pages/Homepage';
 import Alert from './Components/alert';
+import Portfolio from './Components/Portfolio';
+import PublicPortfolio from './Components/publicPortfolio';
+
 
 
 
 function App() {
-  // require('dotenv').config();
-  
-  // const useStyles = makeStyles(() => ({
-  // App: {
-  //   backgroundColor:"#14161a",
-
-    // backgroundColor: "#040F0F",
-    
-  // },
-  // }));
-  // const classes= useStyles;
-  
   
   return (
      
@@ -31,6 +22,8 @@ function App() {
 
         <Route path='/' element={<Homepage/>} exact/>
         <Route path='/coins/:id' element={<CoinPage/>}/> 
+        <Route path='/portfolio/:user' element={<Portfolio/>} />
+        <Route path="/user/:userId" element={<PublicPortfolio/>} />
         </Routes>
     </div>
     <Alert/>

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { doc, Firestore, getFirestore, onSnapshot, setDoc } from 'firebase/firestore';
 import React, { createContext, useContext, useEffect, useState } from 'react'
 import { CoinList } from './config/api';
 import { auth, db } from './firebase';
@@ -8,7 +8,7 @@ import { auth, db } from './firebase';
 
 const Crypto = createContext();
 const CryptoContext = ({children}) => {
-
+  
   const [currency, setCurrency]= useState("INR");
   const [symbol, setSymbol]= useState("₹");
   const [coins, setCoins] = useState([]);
@@ -29,10 +29,31 @@ const CryptoContext = ({children}) => {
 
       var unsubscribe = onSnapshot(coinRef, coin =>{
         if (coin.exists()){
-          console.log(coin.data().coins);
+          // console.log(coin.data().coins);
           setWatchlist(coin.data().coins);
         } else{
           console.log("No items in Watchlist");
+          
+        }
+      });
+
+      return () => {
+        unsubscribe();
+      };
+    } 
+  }, [user]);
+  
+  const [publicPortfolio, setPublicPortfolio] = useState([]);
+  useEffect(() => {
+    if(user){
+     const coinRef = doc(db, "publicPortfolio", user.uid);
+
+      var unsubscribe = onSnapshot(coinRef, coin =>{
+        if (coin.exists()){
+          // console.log(coin.data().coins);
+          setPublicPortfolio(coin.data().coins);
+        } else{
+          console.log("No items in Portfolio");
           
         }
       });
@@ -52,6 +73,13 @@ const CryptoContext = ({children}) => {
    
    });
   }, [])
+
+  useEffect(() => {
+   setUser(user);
+   
+  }, []);
+
+  
   
   
   const fetchCoins = async () => {
@@ -62,15 +90,29 @@ const CryptoContext = ({children}) => {
     setLoading(false);
   };
 
+ const fetchUserById = async (targetUserId) => {
+    try {
+      const userRef = getFirestore.collection('users').doc(targetUserId);
+      const userDoc = await userRef.get();
+  
+      const userData = userDoc.data();
+      return userData;
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      throw error;
+    }
+  };
+
   useEffect(() => {
     if(currency === "INR") setSymbol("₹");
     else if(currency === "USD") setSymbol("$");
     else if(currency === "EUR") setSymbol("€");
+    else if(currency === "GBP") setSymbol("£");
     else if(currency === "JPY") setSymbol("¥");
   }, [currency]); 
 
 
-  return (<Crypto.Provider value={{currency,symbol,setCurrency, coins, loading, fetchCoins,alert, setAlert, user, watchlist, }}>{children}</Crypto.Provider>)
+  return (<Crypto.Provider value={{currency,symbol,setCurrency, setUser, coins, loading, fetchCoins,alert, setAlert, user, watchlist,setWatchlist,  fetchUserById, publicPortfolio, setPublicPortfolio }}>{children}</Crypto.Provider>)
 }
 
 export default CryptoContext;
