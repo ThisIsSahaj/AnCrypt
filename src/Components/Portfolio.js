@@ -79,7 +79,14 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("md")]: {
       display:"none",
     },
-  }
+  },
+  link:{
+    [theme.breakpoints.down("md")]: {
+      display:"flex",
+      flexDirection:"column",
+      fontSize:"10px",
+    },
+  },
 
    }));
 
@@ -333,11 +340,11 @@ const [search, setSearch] = useState("");
          }}
          
          />
-        </Container>
 
-        <span>Share your portfolio with this link-  
+        <span className={classes.link}>Share your portfolio with this link-  
       <Link to={`/publicPortfolio/${user.uid}`}>https://ancrypt.onrender.com/#/publicPortfolio/{user.uid}</Link> 
       </span>
+        </Container>
     </ThemeProvider>
   )
 }

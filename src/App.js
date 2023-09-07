@@ -1,12 +1,10 @@
-// import { makeStyles } from '@material-ui/core';
-import { BrowserRouter,HashRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Header from './Components/Header'
 import CoinPage from './Pages/CoinPage';
 import Homepage from './Pages/Homepage';
 import Alert from './Components/alert';
 import Portfolio from './Components/Portfolio';
-import PublicPortfolio from './Components/publicPortfolio';
 import PublicPort from './Pages/PublicPort';
 
 
