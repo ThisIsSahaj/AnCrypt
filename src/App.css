@@ -145,3 +145,47 @@ video{
 
 }
 
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  font-size: 12px;
+  font: "Montserrat";
+  width: 60px;
+  background-color: #333; /* Dark background color */
+  color: #fff; /* Text color */
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* Tooltip arrow */
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent; /* Dark background color */
+}
+
+/* Show the tooltip on hover */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}

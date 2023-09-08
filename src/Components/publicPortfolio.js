@@ -198,7 +198,6 @@ const PublicPortfolio = () => {
                  {/* {handleSearch() */}
                  {coins.map((coin) => {
                   const profit = coin.price_change_percentage_24h > 0;
-                    const inWatchlist = publicPortfolio.includes(coin?.id);
                   
                         
                     
