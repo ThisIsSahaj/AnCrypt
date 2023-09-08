@@ -1,4 +1,4 @@
-import { Button, Container, createTheme, LinearProgress, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead,  TableRow, TextField, ThemeProvider, Typography } from '@material-ui/core';
+import { Button, Container, createTheme, IconButton, LinearProgress, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead,  TableRow, TextField, ThemeProvider, Typography, Tooltip } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState} from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { Pagination } from "@material-ui/lab";
 import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-
+import {MdOutlineContentCopy} from 'react-icons/md'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -81,10 +81,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   link:{
+    fontSize:"16px",
     [theme.breakpoints.down("md")]: {
-      display:"flex",
-      flexDirection:"column",
-      fontSize:"10px",
+    fontSize:"16px",
     },
   },
 
@@ -96,10 +95,29 @@ const Portfolio = () => {
 const [search, setSearch] = useState("");
  const [page, setPage] = useState(1)
  const navigate = useNavigate();
- const { currency, symbol, coins, loading, fetchCoins, user, watchlist, setAlert,publicPortfolio,setPublicPortfolio } = CryptoState();
  
+ const { currency, symbol, coins, loading, fetchCoins, user, watchlist, setAlert,publicPortfolio,setPublicPortfolio } = CryptoState();
+ const sharingLink = `https://ancrypt.onrender.com/#/publicPortfolio/${user.uid}`
+ const [isCopied, setIsCopied] = useState(false);
  setPublicPortfolio(watchlist); 
 
+ const copyToClipboard = () => {
+  const input = document.createElement('input');
+  input.value = sharingLink;
+  document.body.appendChild(input);
+  input.select();
+  document.execCommand('copy');
+  document.body.removeChild(input);
+  setIsCopied(true);
+
+  if(isCopied){
+    setAlert({
+      open: true,
+      message: "Copied to clipboard!",
+      type: "success",
+    });
+  }
+};
 
 
 
@@ -325,7 +343,7 @@ const [search, setSearch] = useState("");
           }
             
         </TableContainer>
-         <Pagination 
+      <Pagination 
          style={{
           padding: 20,
           width: "100%",
@@ -337,13 +355,21 @@ const [search, setSearch] = useState("");
          onChange={(_, value)=>{
           setPage(value);
           window.scroll(0, 450);
-         }}
-         
+         }}    
          />
+        
 
+        <div style={{width:"100%", overflowWrap:"break-word"}}>
         <span className={classes.link}>Share your portfolio with this link-  
-      <Link to={`/publicPortfolio/${user.uid}`}>https://ancrypt.onrender.com/#/publicPortfolio/{user.uid}</Link> 
+      <Link to={`/publicPortfolio/${user.uid}`}> {sharingLink} </Link>   
       </span>
+      <div className="tooltip">
+         <MdOutlineContentCopy onClick={copyToClipboard} cursor={"pointer"} title="Copy"/>
+         <span className="tooltiptext">Copy</span>
+        </div>
+        </div>
+
+     
         </Container>
     </ThemeProvider>
   )
