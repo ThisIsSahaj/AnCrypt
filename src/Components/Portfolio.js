@@ -110,13 +110,12 @@ const [search, setSearch] = useState("");
   document.body.removeChild(input);
   setIsCopied(true);
 
-  if(isCopied){
     setAlert({
       open: true,
       message: "Copied to clipboard!",
       type: "success",
     });
-  }
+  
 };
 
 
