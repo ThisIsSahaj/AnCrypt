@@ -84,7 +84,6 @@ const useStyles = makeStyles((theme) => ({
 
 const PublicPortfolio = () => {
   const { userId } = useParams();
-  // const userId = "WUyeRbo2XyZ3HRV09IGNooEMa322";
   const [search, setSearch] = useState("");
  const [page, setPage] = useState(1)
  const navigate = useNavigate();
@@ -96,11 +95,8 @@ const PublicPortfolio = () => {
   
   
 
-    // const fetchUserData = async () => {
+   
    const docRef = doc(db, "publicPortfolio", userId);
-  //  const docSnap = await getDoc(docRef);
-  //  console.log(docSnap.data());
-  //  setUserData(docSnap.data())
 
    var unsubscribe = onSnapshot(docRef, coin =>{
     if (coin.exists()){
@@ -195,7 +191,7 @@ const PublicPortfolio = () => {
                 </TableHead>
                  
                 <TableBody>
-                 {/* {handleSearch() */}
+                 
                  {coins.map((coin) => {
                   const profit = coin.price_change_percentage_24h > 0;
                   
@@ -278,8 +274,6 @@ const PublicPortfolio = () => {
                             background: profit > 0 ? "rgba(8,209,88,0.1)" : "rgba(255, 68, 68, 0.1)",
                             boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                             backdropFilter: "blur(3.1px)",
-                            
-                            // float: "center",
                           }}>
 
                           {profit && "+"}
