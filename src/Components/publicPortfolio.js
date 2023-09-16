@@ -84,7 +84,6 @@ const useStyles = makeStyles((theme) => ({
 
 const PublicPortfolio = () => {
   const { userId } = useParams();
-  // const userId = "WUyeRbo2XyZ3HRV09IGNooEMa322";
   const [search, setSearch] = useState("");
  const [page, setPage] = useState(1)
  const navigate = useNavigate();
@@ -93,6 +92,7 @@ const PublicPortfolio = () => {
    
   //  fetchCoins(); 
    
+
    
    
    useEffect(() => {
@@ -109,6 +109,17 @@ const PublicPortfolio = () => {
          if (coin.exists()){
            setPublicPortfolio(coin.data().coins);
            console.log(coin.data().coins);
+
+  
+  
+
+   
+   const docRef = doc(db, "publicPortfolio", userId);
+
+   var unsubscribe = onSnapshot(docRef, coin =>{
+    if (coin.exists()){
+      setPublicPortfolio(coin.data().coins);
+
     } else{
       console.log("No items in Portfolio");
       
@@ -192,6 +203,7 @@ const PublicPortfolio = () => {
                 </TableHead>
                  
                 <TableBody>
+
                 {publicPortfolio.map((coinId) => {
                    const coin = coins.find((c) => c.id === coinId);
                    if (coin) {
@@ -199,6 +211,11 @@ const PublicPortfolio = () => {
 
                 //  {coins.map((coin) => {
                 //   const profit = coin.price_change_percentage_24h > 0;
+
+                 
+                 {coins.map((coin) => {
+                  const profit = coin.price_change_percentage_24h > 0;
+
                   
                         
                     
@@ -279,8 +296,6 @@ const PublicPortfolio = () => {
                             background: profit > 0 ? "rgba(8,209,88,0.1)" : "rgba(255, 68, 68, 0.1)",
                             boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                             backdropFilter: "blur(3.1px)",
-                            
-                            // float: "center",
                           }}>
 
                           {profit && "+"}
