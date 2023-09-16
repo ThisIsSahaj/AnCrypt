@@ -95,31 +95,13 @@ const PublicPortfolio = () => {
 
    
    
-   useEffect(() => {
+  useEffect(() => {
      
      const docRef = doc(db, "publicPortfolio", userId);
-     
-     // const fetchUserData = async () => {
-       
-       //  const docSnap = await getDoc(docRef);
-       //  console.log(docSnap.data());
-       //  setUserData(docSnap.data())
-       
-       var unsubscribe = onSnapshot(docRef, coin =>{
+        var unsubscribe = onSnapshot(docRef, coin =>{
          if (coin.exists()){
            setPublicPortfolio(coin.data().coins);
            console.log(coin.data().coins);
-
-  
-  
-
-   
-   const docRef = doc(db, "publicPortfolio", userId);
-
-   var unsubscribe = onSnapshot(docRef, coin =>{
-    if (coin.exists()){
-      setPublicPortfolio(coin.data().coins);
-
     } else{
       console.log("No items in Portfolio");
       
@@ -129,7 +111,6 @@ const PublicPortfolio = () => {
   
   
 }, [userId]);
-
 
   const darkTheme= createTheme({
     palette: {
