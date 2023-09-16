@@ -158,8 +158,8 @@ useEffect(() => {
         <TextField label="Search" variant="outlined" 
        
         style={{marginBottom: 80, marginTop:40, width: "100%", 
-        boxShadow:" 20px 20px 50px rgba(0, 0, 0, 0.5)", backgroundColor: "rgba(255, 255, 255, 0.1)",
-        borderTop:"1px solid rgba(255, 255, 255, 0.5)", borderLeft:"1px solid rgba(255, 255, 255, 0.5)", backdropFilter:"blur(5px)",
+        boxShadow:" 20px 20px 50px rgba(0, 0, 0, 0.5)", 
+        
         borderRadius: "6px", 
       
       }}

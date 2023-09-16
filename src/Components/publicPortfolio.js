@@ -89,29 +89,35 @@ const PublicPortfolio = () => {
  const [page, setPage] = useState(1)
  const navigate = useNavigate();
  
-   const {coins, symbol, publicPortfolio, setPublicPortfolio, loading} = CryptoState();
+   const {coins, symbol, publicPortfolio, setPublicPortfolio, loading, watchlist, setWatchlist, fetchCoins, currency} = CryptoState();
    
-  useEffect(() => {
+  //  fetchCoins(); 
    
-  
-  
-
-    // const fetchUserData = async () => {
-   const docRef = doc(db, "publicPortfolio", userId);
-  //  const docSnap = await getDoc(docRef);
-  //  console.log(docSnap.data());
-  //  setUserData(docSnap.data())
-
-   var unsubscribe = onSnapshot(docRef, coin =>{
-    if (coin.exists()){
-      setPublicPortfolio(coin.data().coins);
+   
+   
+   useEffect(() => {
+     
+     const docRef = doc(db, "publicPortfolio", userId);
+     
+     // const fetchUserData = async () => {
+       
+       //  const docSnap = await getDoc(docRef);
+       //  console.log(docSnap.data());
+       //  setUserData(docSnap.data())
+       
+       var unsubscribe = onSnapshot(docRef, coin =>{
+         if (coin.exists()){
+           setPublicPortfolio(coin.data().coins);
+           console.log(coin.data().coins);
     } else{
       console.log("No items in Portfolio");
       
+      
     }
   });
-
-  }, [userId])
+  
+  
+}, [userId])
 
 
   const darkTheme= createTheme({
@@ -150,16 +156,7 @@ const PublicPortfolio = () => {
          <span className='blinkText' style={{fontSize:"50px"}}>Public Portfolio </span>
          </Typography>
           
-        <TextField label="Search" variant="outlined" 
-       
-        style={{marginBottom: 40, marginTop:40, width: "100%", 
-        boxShadow:" 20px 20px 50px rgba(0, 0, 0, 0.5)", backgroundColor: "rgba(255, 255, 255, 0.1)",
-        borderTop:"1px solid rgba(255, 255, 255, 0.5)", borderLeft:"1px solid rgba(255, 255, 255, 0.5)", backdropFilter:"blur(5px)",
-        borderRadius: "6px", 
-      
-      }}
-        onChange={(e) => setSearch(e.target.value)}
-        />
+        
 
 
      
@@ -195,14 +192,18 @@ const PublicPortfolio = () => {
                 </TableHead>
                  
                 <TableBody>
-                 {/* {handleSearch() */}
-                 {coins.map((coin) => {
-                  const profit = coin.price_change_percentage_24h > 0;
+                {publicPortfolio.map((coinId) => {
+                   const coin = coins.find((c) => c.id === coinId);
+                   if (coin) {
+                    const profit = coin.price_change_percentage_24h > 0;
+
+                //  {coins.map((coin) => {
+                //   const profit = coin.price_change_percentage_24h > 0;
                   
                         
                     
                    
-                    if (publicPortfolio.includes(coin.id))
+                    // if (publicPortfolio.includes(coin.id))
                     return (<>
                       
                         <TableRow 
@@ -211,7 +212,7 @@ const PublicPortfolio = () => {
                         key={coin.name}
                         > 
 
-                          {/* Watchlist  */}
+                       
                           
                           {/* Coin */}
                         <TableCell component='th' scope='row'
@@ -299,7 +300,7 @@ const PublicPortfolio = () => {
                           </TableCell>
                         </TableRow>
                             </>
-                    ) 
+                    ) }
                  
                 })}
                 </TableBody>
@@ -321,7 +322,6 @@ const PublicPortfolio = () => {
           setPage(value);
           window.scroll(0, 450);
          }}
-         
          />
         </Container>
 
