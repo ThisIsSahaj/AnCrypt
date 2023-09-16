@@ -153,16 +153,7 @@ const [search, setSearch] = useState("");
          <span className='blinkText'>Your Portfolio </span>
          </Typography>
           
-        <TextField label="Search" variant="outlined" 
-       
-        style={{marginBottom: 40, marginTop:40, width: "100%", 
-        boxShadow:" 20px 20px 50px rgba(0, 0, 0, 0.5)", backgroundColor: "rgba(255, 255, 255, 0.1)",
-        borderTop:"1px solid rgba(255, 255, 255, 0.5)", borderLeft:"1px solid rgba(255, 255, 255, 0.5)", backdropFilter:"blur(5px)",
-        borderRadius: "6px", 
-      
-      }}
-        onChange={(e) => setSearch(e.target.value)}
-        />
+        
 
         {/* coin table */}
         <TableContainer 
@@ -191,7 +182,7 @@ const [search, setSearch] = useState("");
                 </TableHead>
                  
                 <TableBody>
-                 {/* {handleSearch() */}
+                 
                  {coins.map((coin) => {
                   const profit = coin.price_change_percentage_24h > 0;
                     const inWatchlist = watchlist.includes(coin?.id);
