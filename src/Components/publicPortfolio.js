@@ -188,30 +188,14 @@ const PublicPortfolio = () => {
                 {publicPortfolio.map((coinId) => {
                    const coin = coins.find((c) => c.id === coinId);
                    if (coin) {
-                    const profit = coin.price_change_percentage_24h > 0;
-
-                //  {coins.map((coin) => {
-                //   const profit = coin.price_change_percentage_24h > 0;
-
-                 
-                 {coins.map((coin) => {
-                  const profit = coin.price_change_percentage_24h > 0;
-
-                  
-                        
-                    
-                   
-                    // if (publicPortfolio.includes(coin.id))
+                    const profit = coin.price_change_percentage_24h > 0;         
+                     
                     return (<>
                       
                         <TableRow 
-                        
                         className={classes.row}
                         key={coin.name}
                         > 
-
-                       
-                          
                           {/* Coin */}
                         <TableCell component='th' scope='row'
                         onClick={() => navigate(`/coins/${coin.id}`)}
