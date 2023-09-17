@@ -298,11 +298,11 @@ const PublicPortfolio = () => {
                             </>
                     ) }
                  
-                })}
+                })},
                 </TableBody>
                </Table>
             )
-          }
+          },
             
         </TableContainer>
          <Pagination 
