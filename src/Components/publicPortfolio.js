@@ -110,10 +110,10 @@ const PublicPortfolio = () => {
   });
   
   
-}, [userId]),
+}, [userId])
 
   const darkTheme= createTheme({
-    palette: {
+    palette: {  
         primary:{
             main: "#fff",
         },
