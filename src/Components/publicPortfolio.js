@@ -110,7 +110,7 @@ const PublicPortfolio = () => {
   });
   
   
-}, [userId]);
+}, [userId]),
 
   const darkTheme= createTheme({
     palette: {
