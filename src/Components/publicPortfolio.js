@@ -8,6 +8,7 @@ import { numberWithCommas } from './Banner/Carousel';
 import { Pagination } from "@material-ui/lab";
 import { doc } from 'firebase/firestore';
 import { db } from '../firebase';
+import TableSkeleton from './tableSkeleton';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -162,7 +163,8 @@ const PublicPortfolio = () => {
         className='coinTable'>
           {
             loading?(
-                <LinearProgress style={{backgroundColor: "orange"}}/>
+                // <LinearProgress style={{backgroundColor: "orange"}}/>
+                <TableSkeleton cards={5}/>    
             ) : (
 
                <Table>

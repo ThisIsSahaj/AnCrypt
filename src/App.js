@@ -6,6 +6,8 @@ import Homepage from './Pages/Homepage';
 import Alert from './Components/alert';
 import Portfolio from './Components/Portfolio';
 import PublicPort from './Pages/PublicPort';
+import {SkeletonTheme} from "react-loading-skeleton"; 
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 
@@ -13,7 +15,8 @@ import PublicPort from './Pages/PublicPort';
 function App() {
   
   return (
-     
+    //  <SkeletonTheme baseColor="#313131" highlightColor="#525252">
+     <SkeletonTheme baseColor="#202020" highlightColor="#525252">
     <HashRouter>
     <div className='mainDiv'>
         <Header />        
@@ -27,7 +30,7 @@ function App() {
     </div>
     <Alert/>
     </HashRouter>
-
+    </SkeletonTheme>
     
    
   );

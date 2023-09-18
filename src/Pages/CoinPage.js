@@ -12,6 +12,8 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { async } from '@firebase/util';
 import { ButtonAuthModal } from '../Components/Authentication/AuthModal';
+import Skeleton from 'react-loading-skeleton';
+import CoinSkeleton from '../Components/coinSkeleton';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -74,7 +76,7 @@ const CoinPage = () => {
  
  const { id } = useParams();
  const [coin, setCoin] = useState();
- const {currency, symbol, user, watchlist, setAlert, publicPortfolio, setPublicPortfolio} = CryptoState();
+ const {currency, symbol, user, watchlist, setAlert, publicPortfolio, setPublicPortfolio, loading} = CryptoState();
  
  setPublicPortfolio(watchlist); 
  
@@ -83,11 +85,14 @@ const CoinPage = () => {
     setCoin(data);
 };
 
-useEffect(() => {
- fetchCoin();
- // eslint-disable-next-line react-hooks/exhaustive-deps
-}, []);
 
+useEffect(() => {
+  setTimeout(() => {
+    fetchCoin();
+
+  }, 4000)
+  
+ }, []);
 
 
 
@@ -169,18 +174,19 @@ const removeFromWatchlist = async() => {
 
   const classes = useStyles();
 
-if (!coin) return <LinearProgress style={{backgroundColor: "orange"}}/>;
+// if (!coin) return <LinearProgress style={{backgroundColor: "orange"}}/>;
 
+if (!coin) return <CoinSkeleton/>;
 return (<>
      <div className={classes.container}>
       <div className={classes.sidebar}>
         
-      <img src={coin?.image.large} 
+       <img src={coin?.image.large} 
       alt={coin?.name} 
       height="200"
       style={{marginBottom: 20}}
       />
-      
+
 
       <Typography variant="h3"  className={classes.heading}>
         {coin?.name}

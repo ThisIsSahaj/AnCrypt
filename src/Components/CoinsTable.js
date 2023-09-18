@@ -12,6 +12,9 @@ import { SingleCoin } from '../config/api';
 import { async } from '@firebase/util';
 
 import { StarAuthModal } from './Authentication/AuthModal';
+import TableSkeleton from './tableSkeleton';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -105,7 +108,10 @@ const [search, setSearch] = useState("");
     setCoin(data);
 };
 useEffect(() => {
-  fetchCoin();
+  setTimeout(() => {
+    fetchCoin();
+
+  }, 5000)
   
  }, []);
 
@@ -177,12 +183,14 @@ useEffect(() => {
         {/* coin table */}
         <TableContainer 
         className='coinTable'>
-          {
+          
+        {
             loading?(
-                <LinearProgress style={{backgroundColor: "orange"}}/>
+                // <LinearProgress style={{backgroundColor: "orange"}}/>
+                <TableSkeleton cards={5}/>               
             ) : (
 
-               <Table>
+              <Table>
                 <TableHead style={{backgroundColor: "orange"}} className={classes.tableHead}>
                    <TableRow>
                     {["Rank","", "Coin", "Price", "24h Change", "Market Cap"].map((head)=>(   //array with mapping
@@ -201,10 +209,11 @@ useEffect(() => {
                 </TableHead>
 
                 <TableBody>
+                
                  {handleSearch()
                  .slice((page-1)*10,(page-1)*10+10)
                  .map((row) => {
-                    const profit = row.price_change_percentage_24h > 0;
+                   const profit = row.price_change_percentage_24h > 0;
 
                     
                     const inWatchlist = watchlist.includes(row?.id);
@@ -284,6 +293,7 @@ useEffect(() => {
                         className={classes.row}
                         key={row.name}
                         > 
+                        
                           {/* Rank  */}
                           <TableCell 
                           onClick={() => navigate(`/coins/${row.id}`)}

@@ -25,6 +25,7 @@
     "react-google-button": "^0.7.2",
     "react-html-parser": "^2.0.2",
     "react-icons": "^4.10.1",
+    "react-loading-skeleton": "^3.3.1",
     "react-router-dom": "^6.15.0",
     "react-router-use-history": "^1.1.0",
     "react-scripts": "5.0.1",
