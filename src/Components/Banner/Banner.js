@@ -6,17 +6,12 @@ import bgVideo2 from '../assets/bgVid2.mp4'
 import bgVideo3 from '../assets/bgVid3.mp4'
 import bgVideo4 from '../assets/bgVid4.mp4'
 import bgVideo5 from '../assets/bgVid5.mp4'
+import Skeleton from 'react-loading-skeleton';
+import { CryptoState } from '../../CryptoContext';
+import CaraouselSkeleton from '../caraouselSkeleton';
 
 const useStyles = makeStyles((theme)=>({
   banner: {
-    
-    // backgroundImage: "url(./bgImgBLOR.jpg)",
-    // backgroundImage: "url(./bgImg.webp)",
-    // backgroundImage: "url(./bgImgNetwork.avif)",
-    // backgroundImage: "url(./bgImgBlocks.jpg)",
-    // backgroundPosition: "center",
-    // backgroundRepeat: "no-repeat",
-    // border: "2px solid orange",
      [theme.breakpoints.down("md")]: {
       height: 800,
     },
@@ -27,34 +22,25 @@ const useStyles = makeStyles((theme)=>({
     display: "flex",
     flexDirection: "column",
     paddingTop: 25,
-    justifyContent: "space-around",
-    // border: "2px solid green",
-    
-    
+    justifyContent: "space-around",    
   },
+
   tagline:{
     display:"flex",
-    // height:"100%",
     flexDirection:"column",
     justifyContent: "center",
-    textAlign: "center",
-    // border: "2px solid red",
-    
-    
-   
+    textAlign: "center", 
   }
 
 }));
 const Banner = () => {
+  const {loading}= CryptoState();
   const classes = useStyles();
+
   return (<>
   
     <div className={classes.banner}>
       <div className="overlay"></div>
-      {/* <video src={bgVideo1} autoPlay loop muted /> */}
-      {/* <video src={bgVideo2} autoPlay loop muted /> */}
-      {/* <video src={bgVideo3} autoPlay loop muted /> */}
-      {/* <video src={bgVideo4} autoPlay loop muted /> */}
       <video src={bgVideo5} autoPlay loop muted  />
       <div className="heroText">
         <Container className={classes.bannerContent}>
@@ -88,7 +74,9 @@ const Banner = () => {
                   Get all the Live Info including Charts 
                 </Typography>
             </div>
+            
             <Carousel />
+           
         </Container>
         </div>
     </div>

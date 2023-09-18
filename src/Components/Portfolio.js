@@ -9,6 +9,7 @@ import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import {MdOutlineContentCopy} from 'react-icons/md'
+import TableSkeleton from './tableSkeleton';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -121,10 +122,18 @@ const [search, setSearch] = useState("");
 
 
 
-  useEffect(() => {
-    fetchCoins();
-  }, [currency]);
+  // useEffect(() => {
+  //   fetchCoins();
+  // }, [currency]);
   
+  useEffect(() => {
+    setTimeout(() => {
+      fetchCoins();
+  
+    }, 5000)
+    
+   }, [currency]);
+
   const darkTheme= createTheme({
     palette: {
         primary:{
@@ -160,7 +169,8 @@ const [search, setSearch] = useState("");
         className='coinTable'>
           {
             loading?(
-                <LinearProgress style={{backgroundColor: "orange"}}/>
+                // <LinearProgress style={{backgroundColor: "orange"}}/>
+                <TableSkeleton cards={5}/>    
             ) : (
 
                <Table>
@@ -350,7 +360,7 @@ const [search, setSearch] = useState("");
         
 
         <div style={{width:"100%", overflowWrap:"break-word"}}>
-        <span className={classes.link}>Share your portfolio with this link-  
+        <span className={classes.link}>Copy your portfolio's link to share it-  
       <Link to={`/publicPortfolio/${user.uid}`}> {sharingLink} </Link>   
       </span>
       <div className="tooltip">

@@ -1,10 +1,11 @@
-import { makeStyles } from '@material-ui/core';
+import { Container, makeStyles } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { CryptoState } from '../../CryptoContext';
 import { TrendingCoins } from '../../config/api';
 import AliceCarousel from "react-alice-carousel";
 import { Link } from 'react-router-dom';
+import TableSkeleton from '../tableSkeleton';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +36,7 @@ const Carousel = () => {
     const [trending, setTrending]= useState([]);
     const classes = useStyles();
     
-   const { currency, symbol } =  CryptoState();
+   const { currency, symbol, loading } =  CryptoState();
 
     const fetchTrendingCoins =async () => {
        const { data } = await axios.get(TrendingCoins(currency));
@@ -49,10 +50,12 @@ const Carousel = () => {
     }, [currency]);
     
 
-    const items = trending.map((coin) => {
 
+    const items = trending.map((coin) => {
+        
         let profit = coin.price_change_percentage_24h >= 0;
 
+       
         return(
             <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
             <img src={coin?.image} alt={coin.name}  height="80" 
@@ -76,8 +79,10 @@ const Carousel = () => {
             </span>
             </Link>
         )
+       
     })
     
+   
     const responsive = {
         0:{
             items: 2,
@@ -86,7 +91,6 @@ const Carousel = () => {
             items: 4,
         },
     };
-
 
   return (<>
     <div className={classes.carousel}>
