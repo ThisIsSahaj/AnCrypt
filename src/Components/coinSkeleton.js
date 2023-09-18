@@ -28,6 +28,12 @@ const useStyles = makeStyles((theme) => ({
       padding: "20px",
       
     },
+    button: {
+     marginTop:"200%",
+     marginLeft:"40px"
+    
+
+    },
    
     
     
@@ -70,7 +76,22 @@ const CoinSkeleton = () => {
       </div>
       
       </div>
-     
+    <div style={{width:"1330px", justifyContent:"center"}}>
+     <div style={{display:"flex", flexDirection:"row", alignItems:"flex-end", justifyContent:"center"}}>
+     <Skeleton height={10} width={120}className={classes.button} />
+     </div>
+      <div style={{display:"flex", flexDirection:"row", alignItems:"flex-end", justifyContent:"center"}}>
+
+      <Skeleton height={30} width={120} className={classes.button} />
+      <Skeleton height={30} width={120} className={classes.button} />
+      <Skeleton height={30} width={120} className={classes.button} />
+      <Skeleton height={30} width={120} className={classes.button} />
+      <Skeleton height={30} width={120} className={classes.button} />
+      </div>
+    
+   
+      
+    </div>
      </div>
     </div>
   )

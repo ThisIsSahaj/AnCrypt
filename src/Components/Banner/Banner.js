@@ -8,7 +8,6 @@ import bgVideo4 from '../assets/bgVid4.mp4'
 import bgVideo5 from '../assets/bgVid5.mp4'
 import Skeleton from 'react-loading-skeleton';
 import { CryptoState } from '../../CryptoContext';
-import CaraouselSkeleton from '../caraouselSkeleton';
 
 const useStyles = makeStyles((theme)=>({
   banner: {
