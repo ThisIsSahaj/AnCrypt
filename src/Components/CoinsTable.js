@@ -227,7 +227,7 @@ useEffect(() => {
                     
                               setAlert({
                                 open: true,
-                                message: `${row.id} Added to your Portfolio!`,
+                                message: `${row.id} Added to your Watchlist!`,
                                 type: "success",
                               });
                       } catch (error) {
@@ -262,7 +262,7 @@ useEffect(() => {
                     
                               setAlert({
                                 open: true,
-                                message: `${row.name} Removed from your Portfolio!`,
+                                message: `${row.name} Removed from your Watchlist!`,
                                 type: "success",
                               });
                       } catch (error) {
