@@ -110,7 +110,7 @@ const addToWatchlist= async() => {
 
           setAlert({
             open: true,
-            message: `${coin.name} Added to your Portfolio!`,
+            message: `${coin.name} Added to your Watchlist!`,
             type: "success",
           });
   } catch (error) {
@@ -145,7 +145,7 @@ const removeFromWatchlist = async() => {
 
           setAlert({
             open: true,
-            message: `${coin.name} Removed from your Portfolio!`,
+            message: `${coin.name} Removed from your Watchlist!`,
             type: "success",
           });
   } catch (error) {
