@@ -146,7 +146,7 @@ const PublicPortfolio = () => {
          >
          <span style={{fontSize:"30px"}} >You are viewing a</span>
          <br/>
-         <span className='blinkText' style={{fontSize:"50px"}}>Public Portfolio </span>
+         <span className='blinkText' style={{fontSize:"50px"}}>Public Watchlist</span>
          </Typography>
           
         

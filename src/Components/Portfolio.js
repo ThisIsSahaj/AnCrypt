@@ -159,7 +159,7 @@ const [search, setSearch] = useState("");
          variant="h4"
          style={{margin: 18, fontFamily: "Montserrat"}}
          >
-         <span className='blinkText'>Your Portfolio </span>
+         <span className='blinkText'>Your Watchlist</span>
          </Typography>
           
         
@@ -360,7 +360,7 @@ const [search, setSearch] = useState("");
         
 
         <div style={{width:"100%", overflowWrap:"break-word"}}>
-        <span className={classes.link}>Copy your portfolio's link to share it-  
+        <span className={classes.link}>Copy your watchlist's link to share it-  
       <Link to={`/publicPortfolio/${user.uid}`}> {sharingLink} </Link>   
       </span>
       <div className="tooltip">

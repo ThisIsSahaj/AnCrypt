@@ -63,7 +63,7 @@ const URLInput = () => {
   return (
     <ThemeProvider theme={darkTheme}>
         <div className={classes.main}>
-            <p className={classes.heading}>Enter a Public Portfolio's URL</p>
+            <p className={classes.heading}>Enter a Public WatchList's URL</p>
     <div className={classes.container}>
       <TextField
       className={classes.input}

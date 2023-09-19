@@ -49,7 +49,11 @@ const Header = () => {
            <Typography onClick={()=> navigate('/') } className={classes.title} variant='h6'>AnCrypt</Typography>
 
 
+           {user && <Link className={classes.portfolio} to={`/portfolio/${user.displayName || user.email}`}>Watchlist</Link>  } 
+
+
            {user && <Link className={classes.portfolio} to={`/portfolio/${user.displayName || user.email}`}>Portfolio</Link>  } 
+
 
            <Select variant="outlined" style={{width:100, height:40, marginRight:15, zIndex:"1",}}
             value={currency}
