@@ -110,7 +110,7 @@ const addToWatchlist= async() => {
 
           setAlert({
             open: true,
-            message: `${coin.name} Added to your Watchlist!`,
+            message: `${coin.name} Added to your Portfolio!`,
             type: "success",
           });
   } catch (error) {
@@ -145,7 +145,7 @@ const removeFromWatchlist = async() => {
 
           setAlert({
             open: true,
-            message: `${coin.name} Removed from your Watchlist!`,
+            message: `${coin.name} Removed from your Portfolio!`,
             type: "success",
           });
   } catch (error) {
@@ -243,7 +243,7 @@ return (<>
            
           >
             
-            {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+            {inWatchlist ? "Remove from Portfolio" : "Add to Portfolio"}
           </Button>)
           :<ButtonAuthModal/>
           }
