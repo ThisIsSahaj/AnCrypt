@@ -106,7 +106,7 @@ export default function UserSidebar() {
   
             setAlert({
               open: true,
-              message: `${coin.name} Removed from your Portfolio!`,
+              message: `${coin.name} Removed from your Watchlist!`,
               type: "success",
             });
     } catch (error) {
