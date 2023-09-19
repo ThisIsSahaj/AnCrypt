@@ -118,19 +118,12 @@ const [search, setSearch] = useState("");
     });
   
 };
-
-
-
-
-  // useEffect(() => {
-  //   fetchCoins();
-  // }, [currency]);
   
   useEffect(() => {
     setTimeout(() => {
       fetchCoins();
   
-    }, 5000)
+    }, 2000)
     
    }, [currency]);
 
@@ -210,7 +203,7 @@ const [search, setSearch] = useState("");
                     
                               setAlert({
                                 open: true,
-                                message: `${coin.name} Removed from your Portfolio!`,
+                                message: `${coin.name} Removed from your Watchlist!`,
                                 type: "success",
                               });
                       } catch (error) {
