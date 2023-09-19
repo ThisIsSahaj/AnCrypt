@@ -90,7 +90,7 @@ useEffect(() => {
   setTimeout(() => {
     fetchCoin();
 
-  }, 4000)
+  }, 2000)
   
  }, []);
 
