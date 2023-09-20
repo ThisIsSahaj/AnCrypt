@@ -54,6 +54,11 @@ const Header = () => {
 
            {user && <Link className={classes.watchlist} to={`/portfolio/${user.displayName || user.email}`}>Watchlist</Link>  } 
 
+
+
+           {user && <Link className={classes.portfolio} to={`/portfolio/${user.displayName || user.email}`}>Watchlist</Link>  } 
+
+
            <Select variant="outlined" style={{width:100, height:40, marginRight:15, zIndex:"1",}}
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}

@@ -85,26 +85,19 @@ const useStyles = makeStyles((theme) => ({
 
 const PublicPortfolio = () => {
   const { userId } = useParams();
-  // const userId = "WUyeRbo2XyZ3HRV09IGNooEMa322";
  const navigate = useNavigate();
  
    const {coins, symbol, publicPortfolio, setPublicPortfolio, loading, watchlist, setWatchlist, fetchCoins, currency} = CryptoState();
    
   //  fetchCoins(); 
    
+
    
    
-   useEffect(() => {
+  useEffect(() => {
      
      const docRef = doc(db, "publicPortfolio", userId);
-     
-     // const fetchUserData = async () => {
-       
-       //  const docSnap = await getDoc(docRef);
-       //  console.log(docSnap.data());
-       //  setUserData(docSnap.data())
-       
-       var unsubscribe = onSnapshot(docRef, coin =>{
+        var unsubscribe = onSnapshot(docRef, coin =>{
          if (coin.exists()){
            setPublicPortfolio(coin.data().coins);
            console.log(coin.data().coins);
@@ -118,9 +111,8 @@ const PublicPortfolio = () => {
   
 }, [userId])
 
-
   const darkTheme= createTheme({
-    palette: {
+    palette: {  
         primary:{
             main: "#fff",
         },
@@ -183,28 +175,18 @@ const PublicPortfolio = () => {
                 </TableHead>
                  
                 <TableBody>
+
                 {publicPortfolio.map((coinId) => {
                    const coin = coins.find((c) => c.id === coinId);
                    if (coin) {
-                    const profit = coin.price_change_percentage_24h > 0;
-
-                //  {coins.map((coin) => {
-                //   const profit = coin.price_change_percentage_24h > 0;
-                  
-                        
-                    
-                   
-                    // if (publicPortfolio.includes(coin.id))
+                    const profit = coin.price_change_percentage_24h > 0;         
+                     
                     return (<>
                       
                         <TableRow 
-                        
                         className={classes.row}
                         key={coin.name}
                         > 
-
-                       
-                          
                           {/* Coin */}
                         <TableCell component='th' scope='row'
                         onClick={() => navigate(`/coins/${coin.id}`)}
@@ -270,8 +252,6 @@ const PublicPortfolio = () => {
                             background: profit > 0 ? "rgba(8,209,88,0.1)" : "rgba(255, 68, 68, 0.1)",
                             boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
                             backdropFilter: "blur(3.1px)",
-                            
-                            // float: "center",
                           }}>
 
                           {profit && "+"}

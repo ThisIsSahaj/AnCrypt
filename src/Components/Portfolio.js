@@ -116,19 +116,12 @@ const Portfolio = () => {
     });
   
 };
-
-
-
-
-  // useEffect(() => {
-  //   fetchCoins();
-  // }, [currency]);
   
   useEffect(() => {
     setTimeout(() => {
       fetchCoins();
   
-    }, 5000)
+    }, 2000)
     
    }, [currency]);
 

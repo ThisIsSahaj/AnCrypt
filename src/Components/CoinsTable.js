@@ -10,6 +10,7 @@ import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { SingleCoin } from '../config/api';
 import { async } from '@firebase/util';
+
 import { StarAuthModal } from './Authentication/AuthModal';
 import TableSkeleton from './tableSkeleton';
 import Skeleton from 'react-loading-skeleton'
