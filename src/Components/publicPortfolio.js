@@ -119,13 +119,7 @@ const PublicPortfolio = () => {
         type: "dark",
     },
   });
-  const handleSearch = () => {
-    return coins.filter(
-        (coin) => (
-        coin.name.toLowerCase().includes(search) || 
-        coin.symbol.toLowerCase().includes(search)
-    ));
-   };
+ 
    const classes = useStyles();    
   
 
