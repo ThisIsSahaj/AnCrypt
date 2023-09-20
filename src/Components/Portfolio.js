@@ -93,8 +93,6 @@ const useStyles = makeStyles((theme) => ({
 const Portfolio = () => {
 //  const [coins, setCoins] = useState([]);
 //  const [loading, setLoading] = useState(false);
-const [search, setSearch] = useState("");
- const [page, setPage] = useState(1)
  const navigate = useNavigate();
  
  const { currency, symbol, coins, loading, fetchCoins, user, watchlist, setAlert,publicPortfolio,setPublicPortfolio } = CryptoState();

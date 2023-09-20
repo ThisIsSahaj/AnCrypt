@@ -86,8 +86,6 @@ const useStyles = makeStyles((theme) => ({
 const PublicPortfolio = () => {
   const { userId } = useParams();
   // const userId = "WUyeRbo2XyZ3HRV09IGNooEMa322";
-  const [search, setSearch] = useState("");
- const [page, setPage] = useState(1)
  const navigate = useNavigate();
  
    const {coins, symbol, publicPortfolio, setPublicPortfolio, loading, watchlist, setWatchlist, fetchCoins, currency} = CryptoState();
@@ -157,15 +155,6 @@ const PublicPortfolio = () => {
          <span className='blinkText' style={{fontSize:"50px"}}>Public Watchlist</span>
          </Typography>
           
-        
-
-
-     
-      
-
-
-
-
         {/* coin table */}
         <TableContainer 
         className='coinTable'>
@@ -311,13 +300,9 @@ const PublicPortfolio = () => {
           }
             
         </TableContainer>
-         
         </Container>
-
-       
     </ThemeProvider>
            
-          
         </div>
     
     </div>

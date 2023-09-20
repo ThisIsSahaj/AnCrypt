@@ -23,8 +23,7 @@ const useStyles= makeStyles ((theme)=> ({
    fontWeight: "normal",
    cursor: "pointer",
    margin: "0px 15px", 
-  //  marginLeft:"0px"
-  }
+  },
 
 }))
 
