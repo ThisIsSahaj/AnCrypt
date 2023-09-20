@@ -5,22 +5,25 @@ import { CryptoState } from '../CryptoContext';
 import AuthModal from './Authentication/AuthModal';
 import UserSidebar from './Authentication/userSidebar';
 
-const useStyles= makeStyles (()=> ({
+const useStyles= makeStyles ((theme)=> ({
   title: {
     flex: 1,
-   
+    [theme.breakpoints.down("md")]: {
+      marginLeft:"-20px",
+    },
     color: "orange",
     fontFamily: "Montserrat",
     fontWeight: "bold",
     cursor: "pointer",
     zIndex:"1",
   },
-  portfolio:{
+  watchlist:{
    color: "orange",
    fontFamily: "Montserrat",
    fontWeight: "normal",
    cursor: "pointer",
-   margin: "0px 20px", 
+   margin: "0px 15px", 
+  //  marginLeft:"0px"
   }
 
 }))
@@ -46,9 +49,12 @@ const Header = () => {
      <AppBar color='transparent' position='static' >
        <Container>
          <Toolbar>
+          
            <Typography onClick={()=> navigate('/') } className={classes.title} variant='h6'>AnCrypt</Typography>
+          
 
-           {user && <Link className={classes.portfolio} to={`/portfolio/${user.displayName || user.email}`}>Watchlist</Link>  } 
+           {user && <Link className={classes.watchlist} to={`/portfolio/${user.displayName || user.email}`}>Watchlist</Link>  } 
+
            <Select variant="outlined" style={{width:100, height:40, marginRight:15, zIndex:"1",}}
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
@@ -61,7 +67,7 @@ const Header = () => {
             <MenuItem value={"JPY"}>JPY ¥</MenuItem>
 
            </Select>
-          <div style={{zIndex:"1",}}>
+          <div  style={{zIndex:"1"}}>
           
           {user ? <UserSidebar /> :  <AuthModal/>}
           </div>
