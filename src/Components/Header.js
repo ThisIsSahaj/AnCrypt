@@ -54,8 +54,12 @@ const Header = () => {
           
 
            {user && <Link className={classes.watchlist} to={`/portfolio/${user.displayName || user.email}`}>Watchlist</Link>  } 
+
            
            {/* <Wallet/> */}
+
+
+             
 
            <Select variant="outlined" style={{width:100, height:40, marginRight:15, zIndex:"1",}}
             value={currency}

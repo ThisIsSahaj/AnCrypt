@@ -251,7 +251,7 @@ return (<>
            
           >
             
-            {inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+            {inWatchlist ? "Remove from Portfolio" : "Add to Portfolio"}
           </Button>)
           :<ButtonAuthModal/>
           }
