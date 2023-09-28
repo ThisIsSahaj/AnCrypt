@@ -4,7 +4,7 @@ import {Link, useNavigate} from "react-router-dom"
 import { CryptoState } from '../CryptoContext';
 import AuthModal from './Authentication/AuthModal';
 import UserSidebar from './Authentication/userSidebar';
-import Wallet from './wallet';
+
 
 const useStyles= makeStyles ((theme)=> ({
   title: {
