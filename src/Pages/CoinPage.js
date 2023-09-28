@@ -15,7 +15,7 @@ import { ButtonAuthModal } from '../Components/Authentication/AuthModal';
 import Skeleton from 'react-loading-skeleton';
 import CoinSkeleton from '../Components/coinSkeleton';
 import TradingView from '../Components/tradingView';
-import Tabs from '../Components/tabs';
+
 
 
 const useStyles = makeStyles((theme) => ({
