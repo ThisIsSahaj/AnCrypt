@@ -1,9 +1,10 @@
-import { AppBar, Container, createTheme, makeStyles, MenuItem, Select, ThemeProvider, Toolbar, Typography, withTheme } from '@material-ui/core';
+import { AppBar, Button, Container, createTheme, makeStyles, MenuItem, Select, ThemeProvider, Toolbar, Typography, withTheme } from '@material-ui/core';
 import React from 'react'
 import {Link, useNavigate} from "react-router-dom"
 import { CryptoState } from '../CryptoContext';
 import AuthModal from './Authentication/AuthModal';
 import UserSidebar from './Authentication/userSidebar';
+import Wallet from './wallet';
 
 const useStyles= makeStyles ((theme)=> ({
   title: {
@@ -53,7 +54,13 @@ const Header = () => {
           
 
            {user && <Link className={classes.watchlist} to={`/portfolio/${user.displayName || user.email}`}>Watchlist</Link>  } 
+
+           
+           {/* <Wallet/> */}
+
+
              
+
            <Select variant="outlined" style={{width:100, height:40, marginRight:15, zIndex:"1",}}
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}

@@ -14,6 +14,8 @@ import { async } from '@firebase/util';
 import { ButtonAuthModal } from '../Components/Authentication/AuthModal';
 import Skeleton from 'react-loading-skeleton';
 import CoinSkeleton from '../Components/coinSkeleton';
+import TradingView from '../Components/tradingView';
+import Tabs from '../Components/tabs';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +59,6 @@ coinData:{
   [theme.breakpoints.down("md")] : {
     fontWeight: "normal",
     fontSize:1,
-    
   },
 },
 description:{
@@ -67,6 +68,13 @@ description:{
   paddingBottom: 15,
   paddingTop: 0,
   textAlign: "justify",
+},
+tradingView:{
+  width:"100%",
+  [theme.breakpoints.down("md")] : {
+    display: "none",
+  },
+
 },
 
 }));
@@ -260,14 +268,24 @@ return (<>
           } */}
         
       </div>
+        
+        {/* <Tabs/>  */}
 
+        
 
       {/* chart */}
       
       </div>
+      
       <CoinInfo coin={coin} />
+
      </div>
     
+      {/* Trading View */}
+      <div  className={classes.tradingView} >
+        <TradingView coin={coin.symbol} />
+      </div> 
+
     </>
   );
 };
